@@ -1,0 +1,65 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em rgba(100, 108, 255, 0.6666666667));
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em rgba(97, 218, 251, 0.6666666667));
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.registry-page {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+}
+.registry-page div:first-of-type {
+  grid-row: 1;
+}
+.registry-page div:nth-of-type(2) {
+  grid-row: 2;
+}
+.registry-page div:nth-of-type(3) {
+  grid-row: 3;
+}
+.registry-page div:nth-of-type(4) {
+  grid-row: 4;
+}
+.registry-page div:nth-of-type(5) {
+  grid-row: 5;
+}
+.registry-page div:nth-of-type(6) {
+  grid-row: 6;
+}/*# sourceMappingURL=App.css.map */
