@@ -5,7 +5,7 @@ export default function LoginPage() {
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
-    navigate('/home'); // Przejdź do HomePage
+    navigate('/home'); 
   };
 
   const handleRegistryClick = () => {
@@ -14,12 +14,22 @@ export default function LoginPage() {
 
   return (
     <div className="registry-login">
-      <button className="account" onClick={handleRegistryClick}>
-        Utwórz konto
-      </button>
-      <button className="account" onClick={handleLoginClick}>
-        Zaloguj się
-      </button>
+      <div>
+        <div>
+          <input type="email" placeholder="adres email" id="email" name="email" required />
+        </div>
+        <div>
+          <input type="password" placeholder="hasło" id="password" name="password" required />
+        </div>
+        <button className="login" onClick={handleLoginClick}>
+          Zaloguj się
+        </button>
+      </div>
+      <div>
+        <button className="account" onClick={handleRegistryClick}>
+          Utwórz konto
+        </button>
+      </div>
     </div>
   );
 }
