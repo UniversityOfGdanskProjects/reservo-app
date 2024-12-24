@@ -8,9 +8,13 @@ export default function LoginPage() {
     navigate('/home'); // Przejdź do HomePage
   };
 
+  const handleRegistryClick = () => {
+    navigate('/registry');
+  }
+
   return (
     <div className="registry-login">
-      <button className="account" onClick={() => alert('Funkcja rejestracji w budowie')}>
+      <button className="account" onClick={handleRegistryClick}>
         Utwórz konto
       </button>
       <button className="account" onClick={handleLoginClick}>
