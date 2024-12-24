@@ -1,18 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import StartingPage from './components/StartingPage'
+import { useState } from 'react';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import './App.css';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import LoginPage from './components/LoginPage';
+import HomePage from './components/HomePage';
 
 
 function App() {
-  const [registry, setRegistry] = useState()
   return (
-    <>
+    <Router>
       <header>Schedulo - your personal reservation manager</header>
-      <StartingPage></StartingPage>
-    </>
-  )
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/home" element={<HomePage />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
