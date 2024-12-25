@@ -7,11 +7,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [userInfo, setUserInfo] = useState(null);
-
-  // const handleLoginClick = () => {
-  //   navigate('/home'); 
-  // };
-
+  
   const handleRegistryClick = () => {
     navigate('/registry');
   }
@@ -29,7 +25,6 @@ export default function LoginPage() {
       const data = await response.json();
       setUserInfo(data); 
       localStorage.setItem('userInfo', JSON.stringify(data));
-      console.log('Zalogowano:', data); // Debug
       navigate('/home');
     } else {
       alert('Błąd logowania.');

@@ -9,11 +9,11 @@ export default function RegistryPage() {
     const [repeatPassword, setRepeatPassword] = useState('');
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [userInfo, setUserInfo] = useState(null);
+    const [message, setMessage] = useState('');
 
     const handleRegister = async (e) => {
-        console.log("ciach");//debug
         e.preventDefault(); 
-        console.log("debug");//debug
     
         if (password === repeatPassword) {
             const response = await fetch('http://localhost:3000/api/register', {
@@ -30,19 +30,25 @@ export default function RegistryPage() {
             });
     
             if (response.ok) {
-                navigate('/home');
+                setMessage('Rejestracja zakończona sukcesem! Zaloguj się, aby przejść do systemu.')
             } else {
-                alert('Coś poszło nie tak...');
+                setMessage('Coś poszło nie tak. Spróbuj ponownie.');
             }
         } else {
             alert('Proszę wpisać dwa razy to samo hasło!');
         }
     };
+
+    const handleLogIn = () => {
+        navigate('/');
+    }
     
 
     return (
         <div className="registry-page">
             <h1>Zarejestruj się</h1>
+            {message && <p>{message}</p>} 
+            <button onClick={handleLogIn}>Zaloguj się</button>
             <form onSubmit={handleRegister}>
                 <div>
                     <label htmlFor="firstName">Imię:</label>
