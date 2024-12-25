@@ -61,26 +61,52 @@ header {
 }
 
 .registry-page {
-  display: grid;
-  grid-template-rows: repeat(6, 1fr);
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
 }
-.registry-page div:first-of-type {
-  grid-row: 1;
+.registry-page h1 {
+  text-align: center;
+  margin-bottom: 20px;
 }
-.registry-page div:nth-of-type(2) {
-  grid-row: 2;
+.registry-page p {
+  color: green;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
-.registry-page div:nth-of-type(3) {
-  grid-row: 3;
+.registry-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
-.registry-page div:nth-of-type(4) {
-  grid-row: 4;
+.registry-page input {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.2s;
 }
-.registry-page div:nth-of-type(5) {
-  grid-row: 5;
+.registry-page label {
+  margin-right: 8px;
 }
-.registry-page div:nth-of-type(6) {
-  grid-row: 6;
+.registry-page button {
+  margin-bottom: 16px;
+  background-color: rgba(100, 108, 255, 0.6666666667);
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.registry-page button:hover {
+  background-color: rgba(98, 106, 255, 0.431372549);
 }
 
 .registry-login {

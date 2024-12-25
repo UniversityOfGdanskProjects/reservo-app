@@ -48,7 +48,7 @@ export default function RegistryPage() {
         <div className="registry-page">
             <h1>Zarejestruj się</h1>
             {message && <p>{message}</p>} 
-            <button onClick={handleLogIn}>Zaloguj się</button>
+            <button className="login-button" onClick={handleLogIn}>Zaloguj się</button>
             <form onSubmit={handleRegister}>
                 <div>
                     <label htmlFor="firstName">Imię:</label>
