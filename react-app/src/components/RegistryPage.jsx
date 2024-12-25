@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function RegistryPage() {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
@@ -29,7 +30,7 @@ export default function RegistryPage() {
             });
     
             if (response.ok) {
-                alert('Rejestracja zakończona sukcesem!');
+                navigate('/home');
             } else {
                 alert('Coś poszło nie tak...');
             }

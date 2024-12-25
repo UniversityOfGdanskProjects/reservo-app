@@ -27,10 +27,10 @@ export default function LoginPage() {
 
     if (response.ok) {
       const data = await response.json();
-      setUserInfo(data); // Zapisujemy pełne dane użytkownika
+      setUserInfo(data); 
       localStorage.setItem('userInfo', JSON.stringify(data));
-      console.log('Zalogowano:', data); // Debugowanie
-      alert('Zalogowano pomyślnie!');
+      console.log('Zalogowano:', data); // Debug
+      navigate('/home');
     } else {
       alert('Błąd logowania.');
     }
