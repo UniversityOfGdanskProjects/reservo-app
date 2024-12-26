@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Calendar from 'react-calendar';
 
 export default function BookingCalendar() {
+  const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
   const [availableHours, setAvailableHours] = useState([
     '12:00', '12:30', '13:00', '13:30', '14:00',
@@ -48,8 +50,10 @@ export default function BookingCalendar() {
     })
       .then((response) => {
         if (response.ok) {
-          alert('Rezerwacja została zapisana.');
+          //alert('Rezerwacja została zapisana.');
           setReservations([...reservations, reservation]);
+          localStorage.setItem('reservations', JSON.stringify(reservations));
+          navigate('/confirm-reservation');
         } else if (response.status === 409) {
           alert('Ten termin jest już zajęty.');
         } else {

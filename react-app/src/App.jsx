@@ -7,7 +7,7 @@ import LoginPage from './components/LoginPage';
 import HomePage from './components/HomePage';
 import RegistryPage from './components/RegistryPage';
 import Calendar from './components/Calendar';
-
+import Confirm from './components/Confirm';
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/registry" element={<RegistryPage />} />
         <Route path="/calendar" element={<Calendar />} />
+        <Route path="/confirm-reservation" element={<Confirm />} />
       </Routes>
     </Router>
   );
