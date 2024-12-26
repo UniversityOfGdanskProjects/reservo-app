@@ -75,6 +75,23 @@ header {
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
+  .login-button {
+    background-color: transparent; 
+    color: #007bff; 
+    border: none; 
+    text-decoration: underline;
+    font-size: 16px;
+    padding: 10px 20px; 
+    cursor: pointer; 
+    &:hover {
+      color: #0056b3; 
+      text-decoration: none; 
+    }
+    &:active {
+      color: #003366; 
+    }
+  }
+
   h1 {
     text-align: center;
     margin-bottom: 20px;
@@ -91,6 +108,7 @@ header {
     gap: 15px;
   }
   input {
+    width: 300px;
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;

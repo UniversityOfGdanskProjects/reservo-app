@@ -51,7 +51,6 @@ export default function RegistryPage() {
             <button className="login-button" onClick={handleLogIn}>Zaloguj się</button>
             <form onSubmit={handleRegister}>
                 <div>
-                    {/* <label htmlFor="firstName">Imię:</label> */}
                     <input 
                         type="text" 
                         id="firstName" 
@@ -63,7 +62,6 @@ export default function RegistryPage() {
                     />
                 </div>
                 <div>
-                    {/* <label htmlFor="lastName">Nazwisko:</label> */}
                     <input 
                         type="text" 
                         id="lastName" 
@@ -75,7 +73,6 @@ export default function RegistryPage() {
                     />
                 </div>
                 <div>
-                    {/* <label htmlFor="email">Adres Email:</label> */}
                     <input 
                         type="email" 
                         id="email" 
@@ -86,7 +83,6 @@ export default function RegistryPage() {
                         required />
                 </div>
                 <div>
-                    {/* <label htmlFor="password">Hasło:</label> */}
                     <input 
                         type="password" 
                         id="password" 
@@ -98,7 +94,6 @@ export default function RegistryPage() {
                     />
                 </div>
                 <div>
-                    {/* <label htmlFor="confirmPassword">Powtórz Hasło:</label> */}
                     <input 
                         type="password" 
                         id="confirmPassword" 

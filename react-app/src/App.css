@@ -72,6 +72,22 @@ header {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
 }
+.registry-page .login-button {
+  background-color: transparent;
+  color: #007bff;
+  border: none;
+  text-decoration: underline;
+  font-size: 16px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.registry-page .login-button:hover {
+  color: #0056b3;
+  text-decoration: none;
+}
+.registry-page .login-button:active {
+  color: #003366;
+}
 .registry-page h1 {
   text-align: center;
   margin-bottom: 20px;
@@ -88,6 +104,7 @@ header {
   gap: 15px;
 }
 .registry-page input {
+  width: 300px;
   padding: 10px;
   font-size: 14px;
   border: 1px solid #ccc;
