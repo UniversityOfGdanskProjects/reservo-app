@@ -141,11 +141,16 @@ header {
       border-color: #b3b3b3;
     }
   }
-  padding: 60px 36px 60px 8px;
+  padding: 22px 36px 60px 8px;
   border: 2px solid gray;
   border-radius: 20px;
   box-shadow: 
     0 4px 6px rgba(0, 0, 0, 0.6),
     0 1px 3px rgba(255, 255, 255, 0.1);
+  p {
+    font-family: Arial, sans-serif;
+    font-size: larger;
+    font-weight: bold;
+  }
 }
 

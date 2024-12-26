@@ -33,6 +33,7 @@ export default function LoginPage() {
 
   return (
     <div className="registry-login">
+      <p>Zaloguj się</p>
       <div>
         <input 
           type="email" 
