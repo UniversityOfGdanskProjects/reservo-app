@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-route
 import LoginPage from './components/LoginPage';
 import HomePage from './components/HomePage';
 import RegistryPage from './components/RegistryPage';
+import Calendar from './components/Calendar';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<LoginPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/registry" element={<RegistryPage />} />
+        <Route path="/calendar" element={<Calendar />} />
       </Routes>
     </Router>
   );

@@ -51,10 +51,10 @@ export default function RegistryPage() {
             <button className="login-button" onClick={handleLogIn}>Zaloguj się</button>
             <form onSubmit={handleRegister}>
                 <div>
-                    <label htmlFor="firstName">Imię:</label>
                     <input 
                         type="text" 
                         id="firstName" 
+                        placeholder='imię'
                         name="firstName" 
                         value={name}
                         onChange={(e) => setName(e.target.value)}
@@ -62,10 +62,10 @@ export default function RegistryPage() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="lastName">Nazwisko:</label>
                     <input 
                         type="text" 
                         id="lastName" 
+                        placeholder='nazwisko'
                         name="lastName" 
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
@@ -73,20 +73,20 @@ export default function RegistryPage() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="email">Adres Email:</label>
                     <input 
                         type="email" 
                         id="email" 
+                        placeholder='adres email'
                         name="email"    
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required />
                 </div>
                 <div>
-                    <label htmlFor="password">Hasło:</label>
                     <input 
                         type="password" 
                         id="password" 
+                        placeholder='hasło'
                         name="password" 
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -94,10 +94,10 @@ export default function RegistryPage() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="confirmPassword">Powtórz Hasło:</label>
                     <input 
                         type="password" 
                         id="confirmPassword" 
+                        placeholder='powtórz hasło'
                         name="confirmPassword" 
                         value={repeatPassword}
                         onChange={(e) => setRepeatPassword(e.target.value)}

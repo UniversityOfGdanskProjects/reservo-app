@@ -57,3 +57,29 @@ app.post('/api/login', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Serwer działa na porcie ${PORT}`);
 });
+
+const reservations = []; 
+
+app.post('/api/reservations', (req, res) => {
+    const { date, time } = req.body;
+    
+    if (!date || !time) {
+        return res.status(400).send('Data i godzina są wymagane.');
+    }
+
+    const isTaken = reservations.some(
+        (reservation) => reservation.date === date && reservation.time === time
+    );
+
+    if (isTaken) {
+        return res.status(409).send('Termin jest już zajęty.');
+    }
+
+    reservations.push({ date, time });
+    console.log('Rezerwacje:', reservations);
+    res.status(201).send('Rezerwacja została zapisana.');
+});
+
+app.get('/api/reservations', (req, res) => {
+    res.status(200).json(reservations);
+});

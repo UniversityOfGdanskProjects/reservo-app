@@ -64,9 +64,29 @@ header {
   max-width: 400px;
   margin: 50px auto;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
+}
+.registry-page .login-button {
+  background-color: transparent;
+  color: #007bff;
+  border: none;
+  text-decoration: underline;
+  font-size: 16px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.registry-page .login-button:hover {
+  color: #0056b3;
+  text-decoration: none;
+}
+.registry-page .login-button:active {
+  color: #003366;
 }
 .registry-page h1 {
   text-align: center;
@@ -84,6 +104,7 @@ header {
   gap: 15px;
 }
 .registry-page input {
+  width: 300px;
   padding: 10px;
   font-size: 14px;
   border: 1px solid #ccc;
@@ -115,18 +136,22 @@ header {
   justify-content: center;
   align-items: center;
   gap: 20px;
-  width: 100%;
-  max-width: 400px;
-  padding: 22px 36px 60px 8px;
+  width: 300px;
+  padding-bottom: 16px;
   border: 2px solid gray;
   border-radius: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(255, 255, 255, 0.1);
 }
+.registry-login button {
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
 .registry-login input {
-  display: block;
-  width: 100%;
-  max-width: 400px;
-  padding: 10px 15px;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 24px;
   font-size: 14px;
   color: #333;
   background-color: #fff;
@@ -149,4 +174,30 @@ header {
   font-family: Arial, sans-serif;
   font-size: larger;
   font-weight: bold;
+}
+
+.calendar {
+  text-align: "center";
+  margin-top: "20px";
+}
+.calendar ul {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.calendar ul h3 {
+  grid-column: 1/3;
+}
+.calendar ul li:nth-of-type(2n + 1) {
+  grid-column: 1;
+}
+.calendar ul li:nth-of-type(2n) {
+  grid-column: 2;
+}
+.calendar ul button {
+  width: 500px;
+}
+.calendar .selected {
+  background-color: rgba(100, 108, 255, 0.6666666667);
 }/*# sourceMappingURL=App.css.map */
