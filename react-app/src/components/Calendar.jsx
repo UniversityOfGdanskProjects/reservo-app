@@ -60,7 +60,7 @@ export default function BookingCalendar() {
           alert('Wystąpił błąd podczas zapisywania rezerwacji.');
         }
       })
-      .catch((error) => console.error('Błąd podczas zapisywania rezerwacji:', error));
+      .catch((error) => console.log('Błąd podczas zapisywania rezerwacji:', error));
   };
 
   const getFilteredHours = () => {
