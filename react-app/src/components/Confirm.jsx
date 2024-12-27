@@ -4,11 +4,13 @@ import { useNavigate } from 'react-router-dom';
 export default function Confirm() {
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
-    const [timer, setTimer] = useState(30); // 5 minut w sekundach
-    const [status, setStatus] = useState("pending"); // pending, confirmed, cancelled
+    const [timer, setTimer] = useState(30); 
+    const [status, setStatus] = useState("pending"); 
     const navigate = useNavigate();
+    const deposit = 10; //zamienic na dane z localstorage
 
     useEffect(() => {
+        localStorage.setItem('deposit', JSON.stringify(10));//zamienic na depozyt danej restauracji
         const storedReservations = localStorage.getItem('reservations');
         if (storedReservations) {
             const reservations = JSON.parse(storedReservations);
@@ -33,15 +35,15 @@ export default function Confirm() {
     }, [timer, status]);
 
     const handleConfirm = () => {
-        setStatus("confirmed");
-        alert("Rezerwacja została potwierdzona!");
-        navigate('/success');
+        
+        // navigate('/payment');
+        // setStatus("confirmed");
+        // navigate('/success');
     };
 
     const handleCancel = async () => {
         setStatus("cancelled");
 
-        // Usuń rezerwację z localStorage
         const storedReservations = localStorage.getItem('reservations');
         if (storedReservations) {
             const reservations = JSON.parse(storedReservations);
@@ -49,7 +51,6 @@ export default function Confirm() {
             localStorage.setItem('reservations', JSON.stringify(updatedReservations));
         }
 
-        // Wyślij żądanie anulowania do backendu
         try {
             const response = await fetch('http://localhost:3000/api/reservations', {
                 method: 'DELETE',
@@ -73,6 +74,7 @@ export default function Confirm() {
             <div>Miejsce:</div>
             <div>Data: {date}</div>
             <div>Godzina: {time}</div>
+            <div>Kwota depozytu: {deposit},00 zł</div>
             {status === "pending" && (
                 <div>
                     <div>
