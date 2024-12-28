@@ -59,12 +59,6 @@ header {
   font-weight: bold;
   letter-spacing: 2px;
 }
-header button {
-  position: inherit;
-  right: 0;
-  border: none;
-  background-color: #1f1f1f;
-}
 
 .registry-page {
   max-width: 400px;
@@ -205,5 +199,17 @@ header button {
   width: 500px;
 }
 .calendar .selected {
+  background-color: rgba(100, 108, 255, 0.6666666667);
+}
+
+.home .button-container {
+  display: flex;
+  gap: 16px;
+  justify-content: space-around;
+}
+.home .button-container button {
+  padding: 16px 40px;
+}
+.home .button-container button:active {
   background-color: rgba(100, 108, 255, 0.6666666667);
 }/*# sourceMappingURL=App.css.map */

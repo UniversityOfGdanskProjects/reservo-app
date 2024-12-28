@@ -9,17 +9,14 @@ import RegistryPage from './components/RegistryPage';
 import Calendar from './components/Calendar';
 import Confirm from './components/Confirm';
 import Payment from './components/Payment';
+import Reservations from './components/Reservations';
 
-const handleClick = () => {
-  Navigate('/reservations')
-}
 
 function App() {
   return (
     <Router>
       <header>
-        <div>Schedulo - your personal reservation manager</div>
-        <button onClick={handleClick}>moje rezerwacje</button>
+        Schedulo - your personal reservation manager
       </header>
       <Routes>
         <Route path="/" element={<LoginPage />} />
@@ -28,6 +25,7 @@ function App() {
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/confirm-reservation" element={<Confirm />} />
         <Route path="/payment" element={<Payment />} />
+        <Route path="/reservations" element={<Reservations />} />
       </Routes>
     </Router>
   );

@@ -13,16 +13,24 @@ export default function HomePage() {
     }
   }, []); 
 
-  const handleClick = () => {
+  const handleCalendarClick = () => {
     navigate('/calendar');
+  }
+  const handleReservationsClick = () => {
+    navigate('/reservations');
   }
 
   return (
-    <div>
+    <div className='home'>
       {userInfo ? ( 
         <>
           <h1>Witaj, {userInfo.firstName} {userInfo.lastName}</h1>
-          <button onClick={handleClick}>Kalendarz</button>
+          <div className='button-container'>
+            <button onClick={handleCalendarClick}>Kalendarz</button>
+            <button onClick={handleReservationsClick}>Moje rezerwacje</button>
+            <button onClick={handleReservationsClick}>Moje rezerwacje</button> 
+            <button onClick={handleReservationsClick}>Moje rezerwacje</button>
+          </div>
         </>
       ) : (
         <h1>Ładowanie danych użytkownika...</h1> 

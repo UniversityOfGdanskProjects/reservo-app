@@ -61,12 +61,6 @@ header {
   font-family: 'Arial', sans-serif;
   font-weight: bold;
   letter-spacing: 2px;
-  button {
-    position: inherit;
-    right: 0;
-    border: none;
-    background-color: #1f1f1f;
-  }
 }
 
 .registry-page {
@@ -211,5 +205,19 @@ header {
   } 
   .selected {
     background-color: $primary-color;
+  }
+}
+
+.home {
+  .button-container {
+    display: flex;
+    gap: 16px;
+    justify-content: space-around;
+    button {
+      padding: 16px 40px;
+      &:active {
+        background-color: $primary-color;
+      }
+    }
   }
 }
