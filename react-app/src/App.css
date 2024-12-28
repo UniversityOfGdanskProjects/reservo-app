@@ -59,6 +59,12 @@ header {
   font-weight: bold;
   letter-spacing: 2px;
 }
+header button {
+  position: inherit;
+  right: 0;
+  border: none;
+  background-color: #1f1f1f;
+}
 
 .registry-page {
   max-width: 400px;
