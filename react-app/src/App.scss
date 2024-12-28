@@ -222,15 +222,28 @@ header {
   }
 }
 
-.restaurant-list {
-  li {
-    list-style-type: none;
-  }
-}
-
 .search-area {
   margin-top: 50px;
   li {
     list-style-type: none;
+  }
+  input {
+    max-width: 800px;
+    width: 90%; /* Maksymalna szerokość dla dużych ekranów */
+    padding: 12px 20px; /* Wewnętrzne odstępy */
+    margin: 20px auto; /* Odstępy wokół i wycentrowanie */
+    display: block; /* Wyświetl jako blok, aby margin działał */
+    border: 2px solid #444; /* Ciemny obrys */
+    border-radius: 8px; /* Zaokrąglone rogi */
+    background-color: #222; /* Ciemne tło inputa */
+    color: #fff; /* Białe litery */
+    font-size: 16px; /* Większy rozmiar tekstu */
+    outline: none; /* Usuń domyślny obrys */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Subtelny cień */
+    transition: border-color 0.3s, box-shadow 0.3s;
+    &:focus {
+      border-color: $primary-color; /* Kolor obrysu podczas fokusu */
+      box-shadow: 0px 0px 8px $primary-color;
+    }
   }
 }
