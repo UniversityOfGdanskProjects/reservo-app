@@ -10,6 +10,7 @@ import Calendar from './components/Calendar';
 import Confirm from './components/Confirm';
 import Payment from './components/Payment';
 import Reservations from './components/Reservations';
+import Search from './components/Search';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/confirm-reservation" element={<Confirm />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/reservations" element={<Reservations />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
     </Router>
   );

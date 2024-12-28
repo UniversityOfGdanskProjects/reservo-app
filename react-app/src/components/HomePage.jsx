@@ -19,6 +19,9 @@ export default function HomePage() {
   const handleReservationsClick = () => {
     navigate('/reservations');
   }
+  const handleMakeReservationClick = () => {
+    navigate('/search');
+  }
 
   return (
     <div className='home'>
@@ -28,7 +31,7 @@ export default function HomePage() {
           <div className='button-container'>
             <button onClick={handleCalendarClick}>Kalendarz</button>
             <button onClick={handleReservationsClick}>Moje rezerwacje</button>
-            <button onClick={handleReservationsClick}>Moje rezerwacje</button> 
+            <button onClick={handleMakeReservationClick}>Nowa rezerwacja</button>
             <button onClick={handleReservationsClick}>Moje rezerwacje</button>
           </div>
         </>
