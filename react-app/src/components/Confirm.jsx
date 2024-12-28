@@ -35,8 +35,8 @@ export default function Confirm() {
     }, [timer, status]);
 
     const handleConfirm = () => {
-        
-        // navigate('/payment');
+
+        navigate('/payment');
         // setStatus("confirmed");
         // navigate('/success');
     };
@@ -84,7 +84,6 @@ export default function Confirm() {
                     <button onClick={handleCancel}>Anuluj</button>
                 </div>
             )}
-            {status === "confirmed" && <div>Rezerwacja potwierdzona. Dziękujemy za wpłatę!</div>}
             {status === "cancelled" && <div>Rezerwacja została anulowana.</div>}
         </div>
     );
