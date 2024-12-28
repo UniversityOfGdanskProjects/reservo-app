@@ -229,20 +229,20 @@ header {
   }
   input {
     max-width: 800px;
-    width: 90%; /* Maksymalna szerokość dla dużych ekranów */
-    padding: 12px 20px; /* Wewnętrzne odstępy */
-    margin: 20px auto; /* Odstępy wokół i wycentrowanie */
-    display: block; /* Wyświetl jako blok, aby margin działał */
-    border: 2px solid #444; /* Ciemny obrys */
-    border-radius: 8px; /* Zaokrąglone rogi */
-    background-color: #222; /* Ciemne tło inputa */
-    color: #fff; /* Białe litery */
-    font-size: 16px; /* Większy rozmiar tekstu */
-    outline: none; /* Usuń domyślny obrys */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Subtelny cień */
+    width: 90%;
+    padding: 12px 20px; 
+    margin: 20px auto; 
+    display: block; 
+    border: 2px solid #444; 
+    border-radius: 8px; 
+    background-color: #222; 
+    color: #fff; 
+    font-size: 16px; 
+    outline: none; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); 
     transition: border-color 0.3s, box-shadow 0.3s;
     &:focus {
-      border-color: $primary-color; /* Kolor obrysu podczas fokusu */
+      border-color: $primary-color; 
       box-shadow: 0px 0px 8px $primary-color;
     }
   }

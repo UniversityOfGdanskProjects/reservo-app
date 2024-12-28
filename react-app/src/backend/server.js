@@ -84,14 +84,16 @@ app.get('/api/reservations', (req, res) => {
 });
 
 app.delete('/api/reservations', (req, res) => {
-  const { restaurant, date, time } = req.body;
+  const { id, date, time } = req.body;
+  console.log('Dane otrzymane w żądaniu DELETE:', { id, date, time });
+  console.log('Obecne rezerwacje na backendzie:', reservations);
 
   if (!date || !time) {
       return res.status(400).send('Data i godzina są wymagane do usunięcia rezerwacji.');
   }
 
   const index = reservations.findIndex(
-      (reservation) => reservation.date === date && reservation.time === time && reservation.restaurant === restaurant
+      (reservation) => reservation.date === date && reservation.time === time && reservation.id === id
   );
 
   if (index === -1) {
