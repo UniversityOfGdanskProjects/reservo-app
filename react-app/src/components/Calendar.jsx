@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Calendar from 'react-calendar';
 
 export default function BookingCalendar() {
+  const restaurant = "mcdonalds"; //Do zmiany (bedzie wybrana przez uzytkownika restauracja)
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
   const [availableHours, setAvailableHours] = useState([
@@ -37,6 +38,7 @@ export default function BookingCalendar() {
     }
 
     const reservation = {
+      restaurant: restaurant,
       date: selectedDate.toISOString().split('T')[0],
       time: selectedTime,
     };

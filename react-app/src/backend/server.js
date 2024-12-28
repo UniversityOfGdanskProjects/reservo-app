@@ -1,6 +1,5 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import cors from 'cors';
 
 const app = express();
@@ -61,21 +60,21 @@ app.listen(PORT, () => {
 const reservations = []; 
 
 app.post('/api/reservations', (req, res) => {
-    const { date, time } = req.body;
+    const { restaurant, date, time } = req.body;
     
-    if (!date || !time) {
-        return res.status(400).send('Data i godzina są wymagane.');
+    if (!date || !time || !restaurant) {
+        return res.status(400).send('Data, godzina i restauracja są wymagane.');
     }
 
     const isTaken = reservations.some(
-        (reservation) => reservation.date === date && reservation.time === time
+        (reservation) => reservation.date === date && reservation.time === time && reservation.restaurant === restaurant
     );
 
     if (isTaken) {
         return res.status(409).send('Termin jest już zajęty.');
     }
 
-    reservations.push({ date, time });
+    reservations.push({ restaurant, date, time });
     console.log('Rezerwacje:', reservations);
     res.status(201).send('Rezerwacja została zapisana.');
 });
@@ -85,14 +84,14 @@ app.get('/api/reservations', (req, res) => {
 });
 
 app.delete('/api/reservations', (req, res) => {
-  const { date, time } = req.body;
+  const { restaurant, date, time } = req.body;
 
   if (!date || !time) {
       return res.status(400).send('Data i godzina są wymagane do usunięcia rezerwacji.');
   }
 
   const index = reservations.findIndex(
-      (reservation) => reservation.date === date && reservation.time === time
+      (reservation) => reservation.date === date && reservation.time === time && reservation.restaurant === restaurant
   );
 
   if (index === -1) {

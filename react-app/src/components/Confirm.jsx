@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Confirm() {
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
+    const [restaurant, setRestaurant] = useState("");
     const [timer, setTimer] = useState(30); 
     const [status, setStatus] = useState("pending"); 
     const navigate = useNavigate();
@@ -17,6 +18,7 @@ export default function Confirm() {
             const reservation = reservations[reservations.length - 1];
             setDate(reservation.date);
             setTime(reservation.time);
+            setRestaurant(reservation.restaurant);
         }
     }, []);
 
@@ -47,7 +49,7 @@ export default function Confirm() {
         const storedReservations = localStorage.getItem('reservations');
         if (storedReservations) {
             const reservations = JSON.parse(storedReservations);
-            const updatedReservations = reservations.filter(r => r.date !== date || r.time !== time);
+            const updatedReservations = reservations.filter(r => r.restaurant !== restaurant || r.date !== date || r.time !== time);
             localStorage.setItem('reservations', JSON.stringify(updatedReservations));
         }
 
@@ -57,7 +59,7 @@ export default function Confirm() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ date, time }),
+                body: JSON.stringify({ restaurant, date, time }),
             });
 
             if (!response.ok) {
@@ -71,7 +73,7 @@ export default function Confirm() {
     return (
         <div className="confirm-reservation">
             <h2>Potwierdź rezerwację</h2>
-            <div>Miejsce:</div>
+            <div>Miejsce: {restaurant}</div>
             <div>Data: {date}</div>
             <div>Godzina: {time}</div>
             <div>Kwota depozytu: {deposit},00 zł</div>
