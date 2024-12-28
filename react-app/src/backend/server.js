@@ -83,3 +83,24 @@ app.post('/api/reservations', (req, res) => {
 app.get('/api/reservations', (req, res) => {
     res.status(200).json(reservations);
 });
+
+app.delete('/api/reservations', (req, res) => {
+  const { date, time } = req.body;
+
+  if (!date || !time) {
+      return res.status(400).send('Data i godzina są wymagane do usunięcia rezerwacji.');
+  }
+
+  const index = reservations.findIndex(
+      (reservation) => reservation.date === date && reservation.time === time
+  );
+
+  if (index === -1) {
+      return res.status(404).send('Rezerwacja nie została znaleziona.');
+  }
+
+  reservations.splice(index, 1);
+  console.log('Zaktualizowane rezerwacje:', reservations);//debug
+  res.status(200).send('Rezerwacja została anulowana.');
+});
+
