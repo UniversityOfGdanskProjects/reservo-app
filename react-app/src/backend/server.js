@@ -106,28 +106,28 @@ app.delete('/api/reservations', (req, res) => {
 });
 
 const restaurants = [
-  {name: "Restauracja Diuna", city: "Sopot", adress: "Aleja Franciszka Mamuszki 22"},
-  {name: "Śliwka w Kompot", city: "Sopot", adress: "Bohaterów Monte Cassino 42"},
-  {name: "Monte Verdi Ristorante Pizzeria", city: "Gdynia", adress: "Józefa Wybickiego 3"},
-  {name:"Kucharia", city:"Gdańsk", adress: "Antoniego Słonimskiego 6"},
-  {name:"Pueblo", city:"Gdańsk", adress: "Kołodziejska 4"},
-  {name:"Pueblo", city:"Gdynia", adress: "Antoniego Abrahama 56"},
-  {name:"Prosty Temat Sopot", city:"Sopot", adress: "Bohaterów Monte Cassino 60"},
-  {name:"Tapas de Rucola", city:"Sopot", adress: "Generała Kazimierza Pułaskiego 15"},
-  {name:"Bistro Oliwa", city:"Gdańsk", adress: ""},
-  {name:"Hashi Sushi", city:"Gdańsk", adress: ""},
-  {name:"Hashi Sushi", city:"Gdynia", adress: ""},
-  {name:"Pierogarnia Mandu", city:"Gdańsk", adress: ""},
-  {name:"Pierogarnia Mandu", city:"Gdynia", adress: ""},
-  {name:"Kebab DRWAL", city:"Gdańsk", adress: ""},
-  {name:"Lolo Thai Jolo", city:"Gdynia", adress: ""},
-  {name:"Pyra Bar Gdynia", city:"Gdynia", adress: ""},
-  {name:"HAOS", city:"Gdynia", adress: "Starowiejska 14"}
+  {name: "Restauracja Diuna", city: "Sopot", adress: "Aleja Franciszka Mamuszki 22", deposit: 10},
+  {name: "Śliwka w Kompot", city: "Sopot", adress: "Bohaterów Monte Cassino 42", deposit: 15},
+  {name: "Monte Verdi Ristorante Pizzeria", city: "Gdynia", adress: "Józefa Wybickiego 3", deposit: 30},
+  {name:"Kucharia", city:"Gdańsk", adress: "Antoniego Słonimskiego 6", deposit: 10},
+  {name:"Pueblo", city:"Gdańsk", adress: "Kołodziejska 4", deposit: 15},
+  {name:"Pueblo", city:"Gdynia", adress: "Antoniego Abrahama 56", deposit: 12},
+  {name:"Prosty Temat Sopot", city:"Sopot", adress: "Bohaterów Monte Cassino 60", deposit: 40},
+  {name:"Tapas de Rucola", city:"Sopot", adress: "Generała Kazimierza Pułaskiego 15", deposit: 20},
+  {name:"Bistro Oliwa", city:"Gdańsk", adress: "", deposit: 15},
+  {name:"Hashi Sushi", city:"Gdańsk", adress: "", deposit: 20},
+  {name:"Hashi Sushi", city:"Gdynia", adress: "", deposit: 17},
+  {name:"Pierogarnia Mandu", city:"Gdańsk", adress: "", deposit: 15}, 
+  {name:"Pierogarnia Mandu", city:"Gdynia", adress: "", deposit: 15},
+  {name:"Kebab DRWAL", city:"Gdańsk", adress: "", deposit: 5},
+  {name:"Lolo Thai Jolo", city:"Gdynia", adress: "", deposit: 8},
+  {name:"Pyra Bar Gdynia", city:"Gdynia", adress: "", deposit: 5},
+  {name:"HAOS", city:"Gdynia", adress: "Starowiejska 14", deposit: 12}
 ];
 
 const restaurantsWithId = restaurants.map((element, index) => {
-  const { name, city, adress } = element;
-  return { id: index + 1, name, city, adress };
+  const { name, city, adress, deposit } = element;
+  return { id: index + 1, name, city, adress, deposit };
 })
 
 app.get('/api/restaurants', (req, res) => {

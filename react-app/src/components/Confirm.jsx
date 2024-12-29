@@ -10,9 +10,10 @@ export default function Confirm() {
     const [city, setCity] = useState("");
     const [restaurant, setRestaurant] = useState("");
     const [status, setStatus] = useState("pending"); 
+    const [deposit, setDeposit] = useState(0);
     const [id, setId] = useState("");
     const navigate = useNavigate();
-    const deposit = 10; //zamienic na dane z localstorage
+    //const deposit = 10; //zamienic na dane z localstorage
 
     useEffect(() => {
         localStorage.setItem('deposit', JSON.stringify(10));//zamienic na depozyt danej restauracji
@@ -26,6 +27,7 @@ export default function Confirm() {
             setName(reservation.restaurant.name);
             setAdress(reservation.restaurant.adress);
             setRestaurant(reservation.restaurant);
+            setDeposit(reservation.restaurant.deposit);
             setId(reservation.id);
         }
     }, []);
