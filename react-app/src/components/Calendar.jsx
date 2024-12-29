@@ -39,9 +39,7 @@ export default function BookingCalendar() {
     fetch('http://localhost:3000/api/reservations')
       .then((response) => response.json())
       .then((data) => {
-        const userReservations = data.filter((res) => res.userId === currentUserId); 
-        // Tylko rezerwacje bieżącego użytkownika
-        setReservations(userReservations); 
+        setReservations(data)
       })
       .catch((error) => console.error('Błąd podczas pobierania rezerwacji:', error));
   }, [currentUserId]);
@@ -95,7 +93,8 @@ export default function BookingCalendar() {
       .filter((res) => res.date === selectedDateString)
       .map((res) => res.time);
 
-    return availableHours.filter((hour) => !takenHours.includes(hour));
+    const hours = availableHours.filter((hour) => !takenHours.includes(hour));
+    setAvailableHours(hours);
   };
 
   return (
@@ -111,7 +110,7 @@ export default function BookingCalendar() {
           <p>Wybrałeś datę: {selectedDate.toLocaleDateString()}</p>
           <ul className="hours">
             <h3>Dostępne godziny:</h3>
-            {getFilteredHours().map((hour) => (
+            {availableHours.map((hour) => (
               <li key={hour}>
                 <button 
                   onClick={() => handleHourClick(hour)}
