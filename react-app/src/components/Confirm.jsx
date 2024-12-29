@@ -7,6 +7,7 @@ export default function Confirm() {
     const [name, setName] = useState("");
     const [adress, setAdress] = useState("");
     const [timer, setTimer] = useState(30); 
+    const [city, setCity] = useState("");
     const [restaurant, setRestaurant] = useState("");
     const [status, setStatus] = useState("pending"); 
     const [id, setId] = useState("");
@@ -21,6 +22,7 @@ export default function Confirm() {
             const reservation = reservations[reservations.length - 1];
             setDate(reservation.date);
             setTime(reservation.time);
+            setCity(reservation.restaurant.city);
             setName(reservation.restaurant.name);
             setAdress(reservation.restaurant.adress);
             setRestaurant(reservation.restaurant);
@@ -78,7 +80,7 @@ export default function Confirm() {
     return (
         <div className="confirm-reservation">
             <h2>Potwierdź rezerwację</h2>
-            <div>Miejsce: {name}</div>
+            <div>Miejsce: {name}, {city}</div>
             <div>Adres: {adress}</div>
             <div>Data: {date}</div>
             <div>Godzina: {time}</div>
