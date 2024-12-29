@@ -4,8 +4,12 @@ import { useNavigate } from 'react-router-dom';
 export default function Confirm() {
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
+    const [name, setName] = useState("");
+    const [adress, setAdress] = useState("");
     const [timer, setTimer] = useState(30); 
+    const [restaurant, setRestaurant] = useState("");
     const [status, setStatus] = useState("pending"); 
+    const [id, setId] = useState("");
     const navigate = useNavigate();
     const deposit = 10; //zamienic na dane z localstorage
 
@@ -17,6 +21,10 @@ export default function Confirm() {
             const reservation = reservations[reservations.length - 1];
             setDate(reservation.date);
             setTime(reservation.time);
+            setName(reservation.restaurant.name);
+            setAdress(reservation.restaurant.adress);
+            setRestaurant(reservation.restaurant);
+            setId(reservation.id);
         }
     }, []);
 
@@ -37,8 +45,6 @@ export default function Confirm() {
     const handleConfirm = () => {
 
         navigate('/payment');
-        // setStatus("confirmed");
-        // navigate('/success');
     };
 
     const handleCancel = async () => {
@@ -47,17 +53,18 @@ export default function Confirm() {
         const storedReservations = localStorage.getItem('reservations');
         if (storedReservations) {
             const reservations = JSON.parse(storedReservations);
-            const updatedReservations = reservations.filter(r => r.date !== date || r.time !== time);
+            const updatedReservations = reservations.filter(r => r.restaurant !== restaurant || r.date !== date || r.time !== time);
             localStorage.setItem('reservations', JSON.stringify(updatedReservations));
         }
 
         try {
+            console.log('Dane wysyłane do usunięcia:', { id, date, time });//debug
             const response = await fetch('http://localhost:3000/api/reservations', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ date, time }),
+                body: JSON.stringify({ id, date, time }),
             });
 
             if (!response.ok) {
@@ -71,7 +78,8 @@ export default function Confirm() {
     return (
         <div className="confirm-reservation">
             <h2>Potwierdź rezerwację</h2>
-            <div>Miejsce:</div>
+            <div>Miejsce: {name}</div>
+            <div>Adres: {adress}</div>
             <div>Data: {date}</div>
             <div>Godzina: {time}</div>
             <div>Kwota depozytu: {deposit},00 zł</div>

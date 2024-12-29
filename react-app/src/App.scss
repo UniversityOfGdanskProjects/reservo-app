@@ -61,12 +61,6 @@ header {
   font-family: 'Arial', sans-serif;
   font-weight: bold;
   letter-spacing: 2px;
-  button {
-    position: inherit;
-    right: 0;
-    border: none;
-    background-color: #1f1f1f;
-  }
 }
 
 .registry-page {
@@ -211,5 +205,45 @@ header {
   } 
   .selected {
     background-color: $primary-color;
+  }
+}
+
+.home {
+  .button-container {
+    display: flex;
+    gap: 16px;
+    justify-content: space-around;
+    button {
+      padding: 16px 40px;
+      &:active {
+        background-color: $primary-color;
+      }
+    }
+  }
+}
+
+.search-area {
+  margin-top: 50px;
+  li {
+    list-style-type: none;
+  }
+  input {
+    max-width: 800px;
+    width: 90%;
+    padding: 12px 20px; 
+    margin: 20px auto; 
+    display: block; 
+    border: 2px solid #444; 
+    border-radius: 8px; 
+    background-color: #222; 
+    color: #fff; 
+    font-size: 16px; 
+    outline: none; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); 
+    transition: border-color 0.3s, box-shadow 0.3s;
+    &:focus {
+      border-color: $primary-color; 
+      box-shadow: 0px 0px 8px $primary-color;
+    }
   }
 }

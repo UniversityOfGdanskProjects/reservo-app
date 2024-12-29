@@ -59,12 +59,6 @@ header {
   font-weight: bold;
   letter-spacing: 2px;
 }
-header button {
-  position: inherit;
-  right: 0;
-  border: none;
-  background-color: #1f1f1f;
-}
 
 .registry-page {
   max-width: 400px;
@@ -206,4 +200,42 @@ header button {
 }
 .calendar .selected {
   background-color: rgba(100, 108, 255, 0.6666666667);
+}
+
+.home .button-container {
+  display: flex;
+  gap: 16px;
+  justify-content: space-around;
+}
+.home .button-container button {
+  padding: 16px 40px;
+}
+.home .button-container button:active {
+  background-color: rgba(100, 108, 255, 0.6666666667);
+}
+
+.search-area {
+  margin-top: 50px;
+}
+.search-area li {
+  list-style-type: none;
+}
+.search-area input {
+  max-width: 800px;
+  width: 90%;
+  padding: 12px 20px;
+  margin: 20px auto;
+  display: block;
+  border: 2px solid #444;
+  border-radius: 8px;
+  background-color: #222;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.search-area input:focus {
+  border-color: rgba(100, 108, 255, 0.6666666667);
+  box-shadow: 0px 0px 8px rgba(100, 108, 255, 0.6666666667);
 }/*# sourceMappingURL=App.css.map */

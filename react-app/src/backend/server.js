@@ -1,6 +1,5 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import cors from 'cors';
 
 const app = express();
@@ -61,21 +60,21 @@ app.listen(PORT, () => {
 const reservations = []; 
 
 app.post('/api/reservations', (req, res) => {
-    const { date, time } = req.body;
+    const { restaurant, date, time } = req.body;
     
-    if (!date || !time) {
-        return res.status(400).send('Data i godzina są wymagane.');
+    if (!date || !time || !restaurant) {
+        return res.status(400).send('Data, godzina i restauracja są wymagane.');
     }
 
     const isTaken = reservations.some(
-        (reservation) => reservation.date === date && reservation.time === time
+        (reservation) => reservation.date === date && reservation.time === time && reservation.restaurant === restaurant
     );
 
     if (isTaken) {
         return res.status(409).send('Termin jest już zajęty.');
     }
 
-    reservations.push({ date, time });
+    reservations.push({ restaurant, date, time });
     console.log('Rezerwacje:', reservations);
     res.status(201).send('Rezerwacja została zapisana.');
 });
@@ -85,14 +84,16 @@ app.get('/api/reservations', (req, res) => {
 });
 
 app.delete('/api/reservations', (req, res) => {
-  const { date, time } = req.body;
+  const { id, date, time } = req.body;
+  console.log('Dane otrzymane w żądaniu DELETE:', { id, date, time });
+  console.log('Obecne rezerwacje na backendzie:', reservations);
 
   if (!date || !time) {
       return res.status(400).send('Data i godzina są wymagane do usunięcia rezerwacji.');
   }
 
   const index = reservations.findIndex(
-      (reservation) => reservation.date === date && reservation.time === time
+      (reservation) => reservation.date === date && reservation.time === time && reservation.id === id
   );
 
   if (index === -1) {
@@ -104,3 +105,31 @@ app.delete('/api/reservations', (req, res) => {
   res.status(200).send('Rezerwacja została anulowana.');
 });
 
+const restaurants = [
+  {name: "Restauracja Diuna", city: "Sopot", adress: "Aleja Franciszka Mamuszki 22"},
+  {name: "Śliwka w Kompot", city: "Sopot", adress: "Bohaterów Monte Cassino 42"},
+  {name: "Monte Verdi Ristorante Pizzeria", city: "Gdynia", adress: "Józefa Wybickiego 3"},
+  {name:"Kucharia", city:"Gdańsk", adress: "Antoniego Słonimskiego 6"},
+  {name:"Pueblo", city:"Gdańsk", adress: "Kołodziejska 4"},
+  {name:"Pueblo", city:"Gdynia", adress: "Antoniego Abrahama 56"},
+  {name:"Prosty Temat Sopot", city:"Sopot", adress: "Bohaterów Monte Cassino 60"},
+  {name:"Tapas de Rucola", city:"Sopot", adress: "Generała Kazimierza Pułaskiego 15"},
+  {name:"Bistro Oliwa", city:"Gdańsk", adress: ""},
+  {name:"Hashi Sushi", city:"Gdańsk", adress: ""},
+  {name:"Hashi Sushi", city:"Gdynia", adress: ""},
+  {name:"Pierogarnia Mandu", city:"Gdańsk", adress: ""},
+  {name:"Pierogarnia Mandu", city:"Gdynia", adress: ""},
+  {name:"Kebab DRWAL", city:"Gdańsk", adress: ""},
+  {name:"Lolo Thai Jolo", city:"Gdynia", adress: ""},
+  {name:"Pyra Bar Gdynia", city:"Gdynia", adress: ""},
+  {name:"HAOS", city:"Gdynia", adress: "Starowiejska 14"}
+];
+
+const restaurantsWithId = restaurants.map((element, index) => {
+  const { name, city, adress } = element;
+  return { id: index + 1, name, city, adress };
+})
+
+app.get('/api/restaurants', (req, res) => {
+  res.status(200).json(restaurantsWithId);
+});

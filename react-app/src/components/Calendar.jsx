@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Calendar from 'react-calendar';
+import { useParams } from 'react-router-dom';
 
 export default function BookingCalendar() {
+  const { id } = useParams(); 
+  const [restaurant, setRestaurant] = useState(null);
+  //const restaurant = "mcdonalds"; //Do zmiany (bedzie wybrana przez uzytkownika restauracja)
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
   const [availableHours, setAvailableHours] = useState([
@@ -13,6 +17,23 @@ export default function BookingCalendar() {
   ]);
   const [reservations, setReservations] = useState([]);
   const [selectedTime, setSelectedTime] = useState(null);
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/restaurants`) 
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Błąd sieci: ' + response.status);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const filteredRestaurant = data.filter((restaurant) => restaurant.id == id);
+        console.log(filteredRestaurant[0]);//debug
+        const restaurant = filteredRestaurant[0];
+        setRestaurant(restaurant);
+      })
+      .catch((error) => console.error('Błąd podczas pobierania danych restauracji:', error));
+  }, [id]);
 
   useEffect(() => {
     fetch('http://localhost:3000/api/reservations')
@@ -37,6 +58,7 @@ export default function BookingCalendar() {
     }
 
     const reservation = {
+      restaurant: restaurant,
       date: selectedDate.toISOString().split('T')[0],
       time: selectedTime,
     };
@@ -50,7 +72,6 @@ export default function BookingCalendar() {
     })
       .then((response) => {
         if (response.ok) {
-          //alert('Rezerwacja została zapisana.');
           setReservations([...reservations, reservation]);
           localStorage.setItem('reservations', JSON.stringify(reservations));
           navigate('/confirm-reservation');
