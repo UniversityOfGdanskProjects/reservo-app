@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 export default function BookingCalendar() {
   const { id } = useParams(); 
   const [restaurant, setRestaurant] = useState(null);
-  //const restaurant = "mcdonalds"; //Do zmiany (bedzie wybrana przez uzytkownika restauracja)
+  const currentUserId = localStorage.getItem('currentUserId');
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
   const [availableHours, setAvailableHours] = useState([
@@ -38,9 +38,13 @@ export default function BookingCalendar() {
   useEffect(() => {
     fetch('http://localhost:3000/api/reservations')
       .then((response) => response.json())
-      .then((data) => setReservations(data))
+      .then((data) => {
+        const userReservations = data.filter((res) => res.userId === currentUserId); 
+        // Tylko rezerwacje bieżącego użytkownika
+        setReservations(userReservations); 
+      })
       .catch((error) => console.error('Błąd podczas pobierania rezerwacji:', error));
-  }, []);
+  }, [currentUserId]);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -61,6 +65,7 @@ export default function BookingCalendar() {
       restaurant: restaurant,
       date: selectedDate.toISOString().split('T')[0],
       time: selectedTime,
+      userId: currentUserId,
     };
 
     fetch('http://localhost:3000/api/reservations', {

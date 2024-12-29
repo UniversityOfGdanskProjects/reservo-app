@@ -62,9 +62,9 @@ app.listen(PORT, () => {
 const reservations = []; 
 
 app.post('/api/reservations', (req, res) => {
-    const { restaurant, date, time } = req.body;
+    const { restaurant, date, time, userId } = req.body;
     
-    if (!date || !time || !restaurant) {
+    if (!date || !time || !restaurant || !userId) {
         return res.status(400).send('Data, godzina i restauracja są wymagane.');
     }
 
@@ -76,7 +76,7 @@ app.post('/api/reservations', (req, res) => {
         return res.status(409).send('Termin jest już zajęty.');
     }
 
-    reservations.push({ restaurant, date, time });
+    reservations.push({ restaurant, date, time, userId});
     console.log('Rezerwacje:', reservations);
     res.status(201).send('Rezerwacja została zapisana.');
 });

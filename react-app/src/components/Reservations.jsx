@@ -4,13 +4,15 @@ import { useNavigate } from 'react-router-dom';
 export default function Reservations() {
     const navigate = useNavigate();
     const [reservations, setReservations] = useState([]);
+    const currentUserId = localStorage.getItem('currentUserId');
 
     useEffect(() => {
         const storedReservations = localStorage.getItem('reservations');
         if (storedReservations) {
             const reservations = JSON.parse(storedReservations);
-            console.log(reservations);//debug
-            setReservations(reservations);
+            console.log("res" + reservations);
+            const filtered = reservations.filter((reservation) => reservation.userId == currentUserId)
+            setReservations(filtered);
         }
     }, []); 
 
