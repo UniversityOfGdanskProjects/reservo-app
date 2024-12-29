@@ -24,7 +24,9 @@ export default function LoginPage() {
     if (response.ok) {
       const data = await response.json();
       setUserInfo(data); 
-      localStorage.setItem('userInfo', JSON.stringify(data));
+      console.log(data);//debug
+      localStorage.setItem(`user_${data.id}`, JSON.stringify(data));
+      localStorage.setItem('currentUserId', data.id);
       navigate('/home');
     } else {
       alert('Błąd logowania.');

@@ -21,6 +21,7 @@ app.post('/api/register', async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = {
+        id: users.length + 1,
         email,
         password: hashedPassword,
         firstName: firstName,  
@@ -47,6 +48,7 @@ app.post('/api/login', async (req, res) => {
     }
   
     res.status(200).json({
+      id: user.id,
       email: user.email,
       firstName: user.firstName,
       lastName: user.lastName,

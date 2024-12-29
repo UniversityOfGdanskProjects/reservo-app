@@ -7,10 +7,16 @@ export default function HomePage() {
   const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
-    const storedUserInfo = localStorage.getItem('userInfo');
-    if (storedUserInfo) {
-        setUserInfo(JSON.parse(storedUserInfo)); 
+    const currentUserId = localStorage.getItem('currentUserId');
+    if (currentUserId) {
+      const currentUser = JSON.parse(localStorage.getItem(`user_${currentUserId}`));
+      console.log('Aktualny użytkownik:', currentUser);//debug
+      setUserInfo(currentUser);
     }
+    // const storedUserInfo = localStorage.getItem('userInfo');
+    // if (storedUserInfo) {
+    //     setUserInfo(JSON.parse(storedUserInfo)); 
+    // }
   }, []); 
 
   const handleCalendarClick = () => {
