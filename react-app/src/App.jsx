@@ -11,6 +11,7 @@ import Confirm from './components/Confirm';
 import Payment from './components/Payment';
 import Reservations from './components/Reservations';
 import Search from './components/Search';
+import AdminPanel from './components/AdminPanel';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/reservations" element={<Reservations />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/admin-panel" element={<AdminPanel />} />
       </Routes>
     </Router>
   );

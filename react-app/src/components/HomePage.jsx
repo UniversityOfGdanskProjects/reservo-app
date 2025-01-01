@@ -5,18 +5,44 @@ import { useNavigate } from 'react-router-dom';
 export default function HomePage() {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState(null);
+  const [admins, setAdmins] = useState([]);
+
+  const fetchAdmins = async () => {
+    try {
+        const response = await fetch('http://localhost:3000/api/admins');
+        if (!response.ok) {
+            throw new Error('Nie udało się pobrać danych adminów');
+        }
+        const data = await response.json();
+        setAdmins(data);
+    } catch (error) {
+        console.log('Błąd podczas pobierania danych adminów:', error);
+    }
+  };
+
+  const checkIfAdmin = (email) => {
+    const isAdmin = admins.some(admin => admin.email === email);
+    return isAdmin;
+  };
 
   useEffect(() => {
-    const currentUserId = localStorage.getItem('currentUserId');
-    if (currentUserId) {
-      const currentUser = JSON.parse(localStorage.getItem(`user_${currentUserId}`));
-      console.log('Aktualny użytkownik:', currentUser);//debug
-      setUserInfo(currentUser);
-    }
-    // const storedUserInfo = localStorage.getItem('userInfo');
-    // if (storedUserInfo) {
-    //     setUserInfo(JSON.parse(storedUserInfo)); 
-    // }
+    const initialize = async () => {
+      await fetchAdmins();
+
+      const currentUserId = localStorage.getItem('currentUserId');
+      if (currentUserId) {
+        const currentUser = JSON.parse(localStorage.getItem(`user_${currentUserId}`));
+        console.log('Aktualny użytkownik:', currentUser);
+        setUserInfo(currentUser);
+
+        if (checkIfAdmin(currentUser.email)) {
+          console.log('Użytkownik jest adminem, przenoszenie do panelu admina');
+          navigate('/admin-panel');
+        }
+      }
+    };
+
+    initialize();
   }, []); 
 
   const handleCalendarClick = () => {
