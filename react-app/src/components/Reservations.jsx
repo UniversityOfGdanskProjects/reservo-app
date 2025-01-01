@@ -25,6 +25,40 @@ export default function Reservations() {
         navigate(`/search`);
     }
 
+    const handleDeleteClick = async (reservationObject) => {
+        try {
+            const { restaurant, date, time } = reservationObject;
+            const id = restaurant.id;
+            console.log(id);//debug
+            console.log(reservationObject);//debug
+            console.log('Dane wysyłane do usunięcia:', { id, date, time });//debug
+            const response = await fetch("http://localhost:3000/api/reservations", {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id, date, time }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Nie udało się usunąć rezerwacji');
+            }
+            
+            const updatedReservations = reservations.filter((r) => 
+                !(r.restaurant.id === restaurant.id && r.date === date && r.time === time)
+            );
+            setReservations(updatedReservations);
+            localStorage.setItem('reservations', JSON.stringify(updatedReservations));
+            
+            if (updatedReservations.length === 0) {
+                setReservationsEmpty(true);
+            }
+        } catch (error) {
+            console.error(error);
+            alert('Wystąpił błąd podczas usuwania rezerwacji');
+        }
+    }
+
     return (
         <div className='reservations-page'>
             {reservationsEmpty === true && (
@@ -37,9 +71,15 @@ export default function Reservations() {
                 <div className='reservations'>
                     <h3>Twoje rezerwacje:</h3>
                     {reservations.map((reservation, index) => (
-                        <div key={index}>
-                            Restauracja: {reservation.restaurant.name}, Data: {reservation.date}, Godzina: {reservation.time}, Adres: {reservation.restaurant.city}, ul.{reservation.restaurant.adress}
-                        </div>
+                        <ul>
+                            <li key={index}>
+                                <div>
+                                    <b>Restauracja:</b> {reservation.restaurant.name}, <b>Data: </b>{reservation.date}, <b>Godzina:</b> {reservation.time}, <b>Adres:</b> {reservation.restaurant.city}, ul.{reservation.restaurant.adress}
+                                </div>
+                                <button onClick={() => handleDeleteClick(reservation)}>Usuń</button>
+                                
+                            </li>
+                        </ul>
                     ))}
                 </div>
             )}

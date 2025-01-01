@@ -27,7 +27,7 @@ export default function Payment() {
             setStatus("confirmed");
             setTimeout(() => {
                 navigate('/home');
-            }, 5000);
+            }, 3000);
         }
     };
 
