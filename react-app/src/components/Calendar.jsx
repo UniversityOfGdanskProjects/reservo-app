@@ -76,7 +76,8 @@ export default function BookingCalendar() {
       .then((response) => {
         if (response.ok) {
           setReservations([...reservations, reservation]);
-          localStorage.setItem('reservations', JSON.stringify(reservations));
+          localStorage.setItem('reservations', JSON.stringify([...reservations, reservation]));
+          localStorage.setItem(`pending-reservation-${currentUserId}`, reservation);
           navigate('/confirm-reservation');
         } else if (response.status === 409) {
           alert('Ten termin jest już zajęty.');
@@ -94,7 +95,7 @@ export default function BookingCalendar() {
       .map((res) => res.time);
 
     const hours = availableHours.filter((hour) => !takenHours.includes(hour));
-    setAvailableHours(hours);
+    return hours;
   };
 
   return (
@@ -110,7 +111,7 @@ export default function BookingCalendar() {
           <p>Wybrałeś datę: {selectedDate.toLocaleDateString()}</p>
           <ul className="hours">
             <h3>Dostępne godziny:</h3>
-            {availableHours.map((hour) => (
+            {getFilteredHours().map((hour) => (
               <li key={hour}>
                 <button 
                   onClick={() => handleHourClick(hour)}

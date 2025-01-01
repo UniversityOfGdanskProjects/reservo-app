@@ -11,7 +11,8 @@ export default function Reservations() {
         if (storedReservations) {
             const reservations = JSON.parse(storedReservations);
             console.log("res" + reservations);
-            const filtered = reservations.filter((reservation) => reservation.userId == currentUserId)
+            const filtered = reservations.filter((reservation) => reservation.userId == currentUserId);
+            filtered.map((el) => console.log(el));//debug
             setReservations(filtered);
         }
     }, []); 

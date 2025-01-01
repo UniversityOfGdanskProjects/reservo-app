@@ -11,7 +11,7 @@ export default function Confirm() {
     const [restaurant, setRestaurant] = useState("");
     const [status, setStatus] = useState("pending"); 
     const [deposit, setDeposit] = useState(0);
-    const [id, setId] = useState("");
+    const [id, setId] = useState(0);
     const navigate = useNavigate();
     //const deposit = 10; //zamienic na dane z localstorage
 
@@ -20,7 +20,10 @@ export default function Confirm() {
         const storedReservations = localStorage.getItem('reservations');
         if (storedReservations) {
             const reservations = JSON.parse(storedReservations);
+            //console.log(reservations[0]);
+            //console.log(reservations[reservations.length-1]);//debug
             const reservation = reservations[reservations.length - 1];
+            //console.log(reservation.restaurant); //debug
             setDate(reservation.date);
             setTime(reservation.time);
             setCity(reservation.restaurant.city);
@@ -28,7 +31,8 @@ export default function Confirm() {
             setAdress(reservation.restaurant.adress);
             setRestaurant(reservation.restaurant);
             setDeposit(reservation.restaurant.deposit);
-            setId(reservation.id);
+            setId(reservation.restaurant.id);
+            console.log(id);
         }
     }, []);
 
