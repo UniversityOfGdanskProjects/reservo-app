@@ -38,7 +38,7 @@ export default function Reservations() {
                     <h3>Twoje rezerwacje:</h3>
                     {reservations.map((reservation, index) => (
                         <div key={index}>
-                            Data: {reservation.date}, Godzina: {reservation.time}, Adres: {reservation.restaurant.city}, ul.{reservation.restaurant.adress}
+                            Restauracja: {reservation.restaurant.name}, Data: {reservation.date}, Godzina: {reservation.time}, Adres: {reservation.restaurant.city}, ul.{reservation.restaurant.adress}
                         </div>
                     ))}
                 </div>

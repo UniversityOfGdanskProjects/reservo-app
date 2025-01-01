@@ -16,14 +16,30 @@ export default function Confirm() {
     //const deposit = 10; //zamienic na dane z localstorage
 
     useEffect(() => {
+        const currentUserId = localStorage.getItem("currentUserId");
         localStorage.setItem('deposit', JSON.stringify(10));//zamienic na depozyt danej restauracji
         const storedReservations = localStorage.getItem('reservations');
-        if (storedReservations) {
-            const reservations = JSON.parse(storedReservations);
-            //console.log(reservations[0]);
-            //console.log(reservations[reservations.length-1]);//debug
-            const reservation = reservations[reservations.length - 1];
-            //console.log(reservation.restaurant); //debug
+        const pendingReservation = localStorage.getItem(`pending-reservation-${currentUserId}`);
+        // localStorage.setItem(`pending-reservation-${currentUserId}`, reservation)
+        // if (storedReservations) {
+        //     const reservations = JSON.parse(storedReservations);
+        //     //console.log(reservations[0]);
+        //     //console.log(reservations[reservations.length-1]);//debug
+        //     const reservation = reservations[reservations.length - 1];
+        //     //console.log(reservation.restaurant); //debug
+        //     setDate(reservation.date);
+        //     setTime(reservation.time);
+        //     setCity(reservation.restaurant.city);
+        //     setName(reservation.restaurant.name);
+        //     setAdress(reservation.restaurant.adress);
+        //     setRestaurant(reservation.restaurant);
+        //     setDeposit(reservation.restaurant.deposit);
+        //     setId(reservation.restaurant.id);
+        //     console.log(id);
+        // }
+        if (pendingReservation) {
+            const reservation = JSON.parse(pendingReservation);
+            console.log(reservation);//debug
             setDate(reservation.date);
             setTime(reservation.time);
             setCity(reservation.restaurant.city);

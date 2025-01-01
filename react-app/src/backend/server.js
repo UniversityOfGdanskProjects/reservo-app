@@ -95,7 +95,7 @@ app.delete('/api/reservations', (req, res) => {
   }
 
   const index = reservations.findIndex(
-      (reservation) => reservation.date === date && reservation.time === time && reservation.id === id
+      (reservation) => reservation.date === date && reservation.time === time && reservation.restaurant.id === id
   );
 
   if (index === -1) {
