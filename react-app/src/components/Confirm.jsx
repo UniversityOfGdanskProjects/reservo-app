@@ -10,23 +10,29 @@ export default function Confirm() {
     const [city, setCity] = useState("");
     const [restaurant, setRestaurant] = useState("");
     const [status, setStatus] = useState("pending"); 
-    const [id, setId] = useState("");
+    const [deposit, setDeposit] = useState(0);
+    const [id, setId] = useState(0);
     const navigate = useNavigate();
-    const deposit = 10; //zamienic na dane z localstorage
+    //const deposit = 10; //zamienic na dane z localstorage
 
     useEffect(() => {
         localStorage.setItem('deposit', JSON.stringify(10));//zamienic na depozyt danej restauracji
         const storedReservations = localStorage.getItem('reservations');
         if (storedReservations) {
             const reservations = JSON.parse(storedReservations);
+            //console.log(reservations[0]);
+            //console.log(reservations[reservations.length-1]);//debug
             const reservation = reservations[reservations.length - 1];
+            //console.log(reservation.restaurant); //debug
             setDate(reservation.date);
             setTime(reservation.time);
             setCity(reservation.restaurant.city);
             setName(reservation.restaurant.name);
             setAdress(reservation.restaurant.adress);
             setRestaurant(reservation.restaurant);
-            setId(reservation.id);
+            setDeposit(reservation.restaurant.deposit);
+            setId(reservation.restaurant.id);
+            console.log(id);
         }
     }, []);
 
