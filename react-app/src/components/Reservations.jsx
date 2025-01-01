@@ -43,7 +43,7 @@ export default function Reservations() {
             if (!response.ok) {
                 throw new Error('Nie udało się usunąć rezerwacji');
             }
-            
+
             const updatedReservations = reservations.filter((r) => 
                 !(r.restaurant.id === restaurant.id && r.date === date && r.time === time)
             );
@@ -57,6 +57,12 @@ export default function Reservations() {
             console.error(error);
             alert('Wystąpił błąd podczas usuwania rezerwacji');
         }
+    }
+
+    const handleChangeClick = (reservationObject) => {
+        localStorage.setItem('modified', JSON.stringify("true"));
+        handleDeleteClick(reservationObject);
+        navigate(`/calendar/${reservationObject.restaurant.id}`);
     }
 
     return (
@@ -77,7 +83,7 @@ export default function Reservations() {
                                     <b>Restauracja:</b> {reservation.restaurant.name}, <b>Data: </b>{reservation.date}, <b>Godzina:</b> {reservation.time}, <b>Adres:</b> {reservation.restaurant.city}, ul.{reservation.restaurant.adress}
                                 </div>
                                 <button onClick={() => handleDeleteClick(reservation)}>Usuń</button>
-                                
+                                <button onClick={() => handleChangeClick(reservation)}>Zmień</button>
                             </li>
                         </ul>
                     ))}

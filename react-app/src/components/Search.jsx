@@ -7,6 +7,7 @@ export default function Search() {
     const [searchText, setSearchText] = useState("");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    localStorage.setItem('modified', JSON.stringify("false"));
 
     const filteredRestaurants = restaurants.filter((restaurant) =>
         restaurant.name.toLowerCase().includes(searchText.toLowerCase())
