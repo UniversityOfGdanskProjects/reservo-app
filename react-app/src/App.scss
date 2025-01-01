@@ -247,3 +247,17 @@ header {
     }
   }
 }
+
+.reservations-page {
+  button {
+    &:active {
+      background-color: $primary-color;
+    }
+  }
+  .no-reservations {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-direction: column;
+  }
+}

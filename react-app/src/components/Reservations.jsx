@@ -21,18 +21,27 @@ export default function Reservations() {
         }
     }, []); 
 
+    const handleClick = () => {
+        navigate(`/search`);
+    }
+
     return (
         <div className='reservations-page'>
-            {reservationsEmpty === true && <div>Nie masz jeszcze żadnych rezerwacji</div>}
+            {reservationsEmpty === true && (
+                <div className='no-reservations'>
+                    <div>Nie masz jeszcze żadnych rezerwacji</div>
+                    <button onClick={handleClick}>Zrób nową rezerwację</button>
+                </div>
+            )}
             {reservationsEmpty === false && (
-                <>
+                <div className='reservations'>
                     <h3>Twoje rezerwacje:</h3>
                     {reservations.map((reservation, index) => (
                         <div key={index}>
                             Data: {reservation.date}, Godzina: {reservation.time}, Adres: {reservation.restaurant.city}, ul.{reservation.restaurant.adress}
                         </div>
                     ))}
-                </>
+                </div>
             )}
         </div>
     );
