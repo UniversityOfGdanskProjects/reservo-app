@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Reservations() {
     const navigate = useNavigate();
     const [reservations, setReservations] = useState([]);
+    const [reservationsEmpty, setReservationsEmpty] = useState(true);
     const currentUserId = localStorage.getItem('currentUserId');
 
     useEffect(() => {
@@ -14,17 +15,25 @@ export default function Reservations() {
             const filtered = reservations.filter((reservation) => reservation.userId == currentUserId);
             filtered.map((el) => console.log(el.restaurant));//debug
             setReservations(filtered);
+            if (filtered.length >= 1) {
+                setReservationsEmpty(false);
+            }
         }
     }, []); 
 
     return (
         <div className='reservations-page'>
-             <h3>Twoje rezerwacje:</h3>
-            {reservations.map((reservation, index) => (
-                <div key={index}>
-                    Data: {reservation.date}, Godzina: {reservation.time}, Adres: {reservation.restaurant.city}, ul.{reservation.restaurant.adress}
-                </div>
-            ))}
+            {reservationsEmpty === true && <div>Nie masz jeszcze żadnych rezerwacji</div>}
+            {reservationsEmpty === false && (
+                <>
+                    <h3>Twoje rezerwacje:</h3>
+                    {reservations.map((reservation, index) => (
+                        <div key={index}>
+                            Data: {reservation.date}, Godzina: {reservation.time}, Adres: {reservation.restaurant.city}, ul.{reservation.restaurant.adress}
+                        </div>
+                    ))}
+                </>
+            )}
         </div>
     );
 }
