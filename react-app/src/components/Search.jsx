@@ -9,7 +9,8 @@ export default function Search() {
     const [error, setError] = useState(null);
 
     const filteredRestaurants = restaurants.filter((restaurant) =>
-        restaurant.name.toLowerCase().includes(searchText.toLowerCase())
+        restaurant.name.toLowerCase().includes(searchText.toLowerCase()) ||
+        restaurant.city.toLowerCase().includes(searchText.toLowerCase())
     );
 
     useEffect(() => {
