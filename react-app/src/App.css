@@ -258,6 +258,11 @@ header {
   flex-direction: column;
   gap: 16px;
 }
+.reservations-page .reservations ul {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
 .reservations-page .reservations li {
   display: flex;
   gap: 16px;
@@ -274,6 +279,6 @@ header {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-.ba {
-  margin-top: 100px;
+.admin-reservations-page li {
+  list-style-type: none;
 }/*# sourceMappingURL=App.css.map */

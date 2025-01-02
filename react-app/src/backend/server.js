@@ -136,7 +136,7 @@ app.get('/api/restaurants', (req, res) => {
   res.status(200).json(restaurantsWithId);
 });
 
-const admins = ["kanabaj.amelia@gmail.com"]
+const admins = ["kanabaj.amelia@gmail.com"];
 
 app.get('/api/admins', (req, res) => {
   res.status(200).json(admins);

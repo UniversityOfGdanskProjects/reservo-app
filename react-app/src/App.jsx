@@ -12,6 +12,7 @@ import Payment from './components/Payment';
 import Reservations from './components/Reservations';
 import Search from './components/Search';
 import AdminPanel from './components/AdminPanel';
+import AdminReservations from './components/AdminReservations';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/reservations" element={<Reservations />} />
         <Route path="/search" element={<Search />} />
         <Route path="/admin-panel" element={<AdminPanel />} />
+        <Route path="/admin-reservations" element={<AdminReservations />} />
       </Routes>
     </Router>
   );

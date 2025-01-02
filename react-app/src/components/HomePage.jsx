@@ -14,29 +14,30 @@ export default function HomePage() {
             throw new Error('Nie udało się pobrać danych adminów');
         }
         const data = await response.json();
+        console.log('Pobrani admini:', data);//debug
         setAdmins(data);
     } catch (error) {
         console.log('Błąd podczas pobierania danych adminów:', error);
     }
   };
 
-  const checkIfAdmin = (email) => {
-    const isAdmin = admins.some(admin => admin.email === email);
+  const checkIfAdmin = (userEmail) => {
+    const isAdmin = admins.some(admin => admin === userEmail);
     return isAdmin;
   };
 
   useEffect(() => {
     const initialize = async () => {
       await fetchAdmins();
-
       const currentUserId = localStorage.getItem('currentUserId');
+      console.log(currentUserId);//debug
       if (currentUserId) {
         const currentUser = JSON.parse(localStorage.getItem(`user_${currentUserId}`));
-        console.log('Aktualny użytkownik:', currentUser);
+        console.log('Aktualny użytkownik:', currentUser);//debug
         setUserInfo(currentUser);
 
         if (checkIfAdmin(currentUser.email)) {
-          console.log('Użytkownik jest adminem, przenoszenie do panelu admina');
+          console.log('Przenoszenie do panelu administratora');
           navigate('/admin-panel');
         }
       }
