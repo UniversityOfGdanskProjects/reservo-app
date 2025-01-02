@@ -41,6 +41,10 @@
   color: #888;
 }
 
+button:active {
+  background-color: rgba(100, 108, 255, 0.6666666667);
+}
+
 header {
   position: fixed;
   top: 0;
@@ -210,9 +214,6 @@ header {
 .home .button-container button {
   padding: 16px 40px;
 }
-.home .button-container button:active {
-  background-color: rgba(100, 108, 255, 0.6666666667);
-}
 
 .search-area {
   margin-top: 50px;
@@ -242,9 +243,6 @@ header {
 
 .reservations-page {
   margin-top: 50px;
-}
-.reservations-page button:active {
-  background-color: rgba(100, 108, 255, 0.6666666667);
 }
 .reservations-page .no-reservations {
   display: flex;
@@ -277,6 +275,79 @@ header {
   padding: 12px;
   background-color: rgba(100, 108, 255, 0.6666666667);
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.admin-panel {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.admin-panel .button-container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.restaurant-list {
+  margin-top: 50px;
+  display: grid;
+}
+.restaurant-list li {
+  display: grid;
+  grid-template-columns: 7fr 1fr;
+  gap: 16px;
+  margin: 16px 0;
+}
+.restaurant-list li div {
+  border: 1px solid rgba(100, 108, 255, 0.6666666667);
+  border-radius: 10px;
+  grid-column: 1;
+  padding: 12px;
+  background-color: rgba(100, 108, 255, 0.6666666667);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+.restaurant-list li button {
+  grid-column: 2;
+}
+
+.new-restaurant button {
+  margin-bottom: 10px;
+}
+.new-restaurant .restaurant-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.new-restaurant div {
+  border: 1px solid rgba(100, 108, 255, 0.6666666667);
+  width: 400px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  border-radius: 10px;
+}
+.new-restaurant .error-message {
+  border: none;
+}
+.new-restaurant input {
+  display: flex;
+  align-self: center;
+  width: 80%;
+  border: 2px solid #444;
+  border-radius: 8px;
+  background-color: #222;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.new-restaurant input:focus {
+  border-color: rgba(100, 108, 255, 0.6666666667);
+  box-shadow: 0px 0px 8px rgba(100, 108, 255, 0.6666666667);
 }
 
 .admin-reservations-page li {

@@ -20,9 +20,11 @@ export default function AdminPanel() {
     return (
         <div className='admin-panel'>
             <h2>Panel administratora</h2>
-            <button onClick={handleReservationsClick}>Zarządzaj rezerwacjami</button>
-            <button onClick={handleUsersClick}>Zarządzaj użytkownikami</button>
-            <button onClick={handleRestaurantsClick}>Zarządzaj restauracjami</button>
+            <div className='button-container'>
+                <button onClick={handleReservationsClick}>Zarządzaj rezerwacjami</button>
+                <button onClick={handleUsersClick}>Zarządzaj użytkownikami</button>
+                <button onClick={handleRestaurantsClick}>Zarządzaj restauracjami</button>
+            </div>
         </div>
     )
 }

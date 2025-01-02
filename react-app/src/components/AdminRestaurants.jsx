@@ -114,17 +114,21 @@ export default function AdminRestaurants() {
       {isUserAdmin === false && <div>Dostęp tylko dla administratorów</div>}
       {isUserAdmin === true && (
         <>
-          <div className='user-list'>
+          <div className='restaurant-list'>
             <h2>Lista restauracji:</h2>
-            {restaurants.map((restaurant, index) => (
-              <div key={index}>
-                <b> Nazwa: </b> {restaurant.name}
-                <b> Adres: </b> {restaurant.city}, {restaurant.adress}
-                <b> Kwota depozytu: </b> {restaurant.deposit},00zł
-                <b> ID: </b> {restaurant.id}
-                <button onClick={() => handleDeleteClick(restaurant.id)}>Usuń restaurację</button>
-              </div>
-            ))}
+            <ul>
+                {restaurants.map((restaurant, index) => (
+                    <li key={index}>
+                        <div>
+                            <b> Nazwa: </b> {restaurant.name}
+                            <b> Adres: </b> {restaurant.city}, {restaurant.adress}
+                            <b> Kwota depozytu: </b> {restaurant.deposit},00zł
+                            <b> ID: </b> {restaurant.id}
+                        </div>
+                        <button onClick={() => handleDeleteClick(restaurant.id)}>Usuń restaurację</button>
+                    </li>
+                ))}
+            </ul>
           </div>
           <div className='new-restaurant'>
             <button onClick={handleNewRestaurantClick}>Dodaj nową restaurację</button>
@@ -147,7 +151,7 @@ export default function AdminRestaurants() {
                 onSubmit={handleSubmit}
               >
                 {({ values, handleChange, handleBlur, errors, touched }) => (
-                  <Form>
+                  <Form className='restaurant-form'>
                     <div>
                       <label htmlFor="name">Nazwa restauracji:</label>
                       <Field
@@ -159,7 +163,7 @@ export default function AdminRestaurants() {
                         onBlur={handleBlur}
                         required
                       />
-                      <ErrorMessage name="name" component="div" style={{ color: 'red' }} />
+                      <ErrorMessage className="error-message" name="name" component="div" style={{ color: 'red' }} />
                     </div>
 
                     <div>
@@ -173,7 +177,7 @@ export default function AdminRestaurants() {
                         onBlur={handleBlur}
                         required
                       />
-                      <ErrorMessage name="city" component="div" style={{ color: 'red' }} />
+                      <ErrorMessage className="error-message" name="city" component="div" style={{ color: 'red' }} />
                     </div>
 
                     <div>
@@ -187,7 +191,7 @@ export default function AdminRestaurants() {
                         onBlur={handleBlur}
                         required
                       />
-                      <ErrorMessage name="adress" component="div" style={{ color: 'red' }} />
+                      <ErrorMessage className="error-message" name="adress" component="div" style={{ color: 'red' }} />
                     </div>
 
                     <div>
@@ -201,7 +205,7 @@ export default function AdminRestaurants() {
                         onBlur={handleBlur}
                         required
                       />
-                      <ErrorMessage name="deposit" component="div" style={{ color: 'red' }} />
+                      <ErrorMessage className="error-message" name="deposit" component="div" style={{ color: 'red' }} />
                     </div>
 
                     <button type="submit">Dodaj Restaurację</button>
