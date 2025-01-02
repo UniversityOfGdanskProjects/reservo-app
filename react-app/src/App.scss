@@ -249,6 +249,7 @@ header {
 }
 
 .reservations-page {
+  margin-top: 50px;
   button {
     &:active {
       background-color: $primary-color;
@@ -259,5 +260,38 @@ header {
     justify-content: space-between;
     gap: 20px;
     flex-direction: column;
+  }
+  .reservations {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 16px;
+    ul {
+      display: flex;
+      gap: 20px;
+      flex-direction: column;
+    }
+    li {
+      display: flex;
+      gap: 16px;
+      button {
+        //padding: 12px;
+        border: 1px solid $primary-color;
+      }
+    }
+    div {
+      border: 1px solid $primary-color;
+      border-radius: 10px;
+      width: 900px;
+      padding: 12px;
+      background-color: $primary-color;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+.admin-reservations-page {
+  li {
+    list-style-type: none;
   }
 }

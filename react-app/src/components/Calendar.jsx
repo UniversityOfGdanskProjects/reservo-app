@@ -61,7 +61,7 @@ export default function BookingCalendar() {
 
     const reservation = {
       restaurant: restaurant,
-      date: selectedDate.toISOString().split('T')[0],
+      date: selectedDate.toLocaleDateString('en-CA'),//zmiana
       time: selectedTime,
       userId: currentUserId,
     };
@@ -77,7 +77,7 @@ export default function BookingCalendar() {
         if (response.ok) {
           setReservations([...reservations, reservation]);
           localStorage.setItem('reservations', JSON.stringify([...reservations, reservation]));
-          localStorage.setItem(`pending-reservation-${currentUserId}`, reservation);
+          localStorage.setItem(`pending-reservation-${currentUserId}`, JSON.stringify(reservation));
           navigate('/confirm-reservation');
         } else if (response.status === 409) {
           alert('Ten termin jest już zajęty.');
@@ -89,7 +89,7 @@ export default function BookingCalendar() {
   };
 
   const getFilteredHours = () => {
-    const selectedDateString = selectedDate.toISOString().split('T')[0];
+    const selectedDateString = selectedDate.toLocaleDateString('en-CA');//zmiana
     const takenHours = reservations
       .filter((res) => res.date === selectedDateString)
       .map((res) => res.time);

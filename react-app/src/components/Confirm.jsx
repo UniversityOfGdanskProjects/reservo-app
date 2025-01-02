@@ -13,17 +13,14 @@ export default function Confirm() {
     const [deposit, setDeposit] = useState(0);
     const [id, setId] = useState(0);
     const navigate = useNavigate();
-    //const deposit = 10; //zamienic na dane z localstorage
 
     useEffect(() => {
-        localStorage.setItem('deposit', JSON.stringify(10));//zamienic na depozyt danej restauracji
+        const currentUserId = localStorage.getItem("currentUserId");
         const storedReservations = localStorage.getItem('reservations');
-        if (storedReservations) {
-            const reservations = JSON.parse(storedReservations);
-            //console.log(reservations[0]);
-            //console.log(reservations[reservations.length-1]);//debug
-            const reservation = reservations[reservations.length - 1];
-            //console.log(reservation.restaurant); //debug
+        const pendingReservation = localStorage.getItem(`pending-reservation-${currentUserId}`);
+        if (pendingReservation) {
+            const reservation = JSON.parse(pendingReservation);
+            console.log(reservation);//debug
             setDate(reservation.date);
             setTime(reservation.time);
             setCity(reservation.restaurant.city);

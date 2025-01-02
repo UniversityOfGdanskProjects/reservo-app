@@ -33,6 +33,37 @@ app.post('/api/register', async (req, res) => {
     res.status(201).send('Zarejestrowano pomyślnie');
 });
 
+app.get('/api/users', (req, res) => {
+  console.log(users);
+  console.log('Żądanie do /api/users');
+  if (users.length === 0) {
+      return res.status(404).send('Brak użytkowników');
+  }
+
+  const usersInfo = users.map(user => ({
+      id: user.id,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+  }));
+
+  res.status(200).json(usersInfo);
+});
+
+app.delete('/api/users', (req, res) => {
+  const { email } = req.body;
+
+  const userIndex = users.findIndex(user => user.email === email);
+  if (userIndex === -1) {
+    return res.status(404).send('Użytkownik nie został znaleziony');
+  }
+
+  users.splice(userIndex, 1);
+  console.log(`Usunięto użytkownika: ${email}`);
+  
+  res.status(200).send('Użytkownik został usunięty');
+});
+
 app.post('/api/login', async (req, res) => {
     const { email, password } = req.body;
   
@@ -95,7 +126,7 @@ app.delete('/api/reservations', (req, res) => {
   }
 
   const index = reservations.findIndex(
-      (reservation) => reservation.date === date && reservation.time === time && reservation.id === id
+      (reservation) => reservation.date === date && reservation.time === time && reservation.restaurant.id === id
   );
 
   if (index === -1) {
@@ -134,4 +165,46 @@ const restaurantsWithId = restaurants.map((element, index) => {
 
 app.get('/api/restaurants', (req, res) => {
   res.status(200).json(restaurantsWithId);
+});
+
+app.delete('/api/restaurants', (req, res) => {
+  const { id } = req.body;
+
+  const restaurantIndex = restaurantsWithId.findIndex(restaurant => restaurant.id === id);
+  if (restaurantIndex === -1) {
+    return res.status(404).send('Restauracja nie została znaleziona');
+  }
+
+  restaurantsWithId.splice(restaurantIndex, 1);
+  console.log(`Usunięto restaurację}`);
+  
+  res.status(200).send('Restauracja została usunięta');
+});
+
+app.post('/api/restaurants', (req, res) => {
+  const { name, city, adress, deposit } = req.body;
+
+  if (!name || !city || !adress || !deposit) {
+    return res.status(400).send('Wszystkie dane restauracji muszą być przekazane!');
+  }
+
+  const newRestaurant = {
+    id: restaurantsWithId.length + 1,
+    name,
+    city,
+    adress,
+    deposit,
+  };
+
+  restaurantsWithId.push(newRestaurant);
+  console.log('Nowa restauracja:', newRestaurant);
+
+  res.status(201).send('Restauracja została dodana');
+});
+
+
+const admins = ["kanabaj.amelia@gmail.com"];
+
+app.get('/api/admins', (req, res) => {
+  res.status(200).json(admins);
 });
