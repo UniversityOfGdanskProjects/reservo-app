@@ -33,6 +33,24 @@ app.post('/api/register', async (req, res) => {
     res.status(201).send('Zarejestrowano pomyślnie');
 });
 
+app.get('/api/users', (req, res) => {
+  console.log(users);
+  console.log('Żądanie do /api/users');
+  if (users.length === 0) {
+      return res.status(404).send('Brak użytkowników');
+  }
+
+  const usersInfo = users.map(user => ({
+      id: user.id,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+  }));
+
+  res.status(200).json(usersInfo);
+});
+
+
 app.post('/api/login', async (req, res) => {
     const { email, password } = req.body;
   

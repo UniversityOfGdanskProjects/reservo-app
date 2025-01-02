@@ -13,6 +13,7 @@ import Reservations from './components/Reservations';
 import Search from './components/Search';
 import AdminPanel from './components/AdminPanel';
 import AdminReservations from './components/AdminReservations';
+import AdminUsers from './components/AdminUsers';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/admin-panel" element={<AdminPanel />} />
         <Route path="/admin-reservations" element={<AdminReservations />} />
+        <Route path="/admin-users" element={<AdminUsers />} />
       </Routes>
     </Router>
   );

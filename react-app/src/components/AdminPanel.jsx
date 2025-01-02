@@ -9,11 +9,15 @@ export default function AdminPanel() {
         navigate('/admin-reservations');
     };
 
+    const handleUsersClick = () => {
+        navigate('/admin-users');
+    }
+
     return (
         <div className='admin-panel'>
             <h2>Panel administratora</h2>
             <button onClick={handleReservationsClick}>Zarządzaj rezerwacjami</button>
-            <button>Zarządzaj użytkownikami</button>
+            <button onClick={handleUsersClick}>Zarządzaj użytkownikami</button>
         </div>
     )
 }

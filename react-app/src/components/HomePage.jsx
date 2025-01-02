@@ -6,6 +6,8 @@ export default function HomePage() {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState(null);
   const [admins, setAdmins] = useState([]);
+  const currentUserId = localStorage.getItem('currentUserId');
+  const currentUser = JSON.parse(localStorage.getItem(`user_${currentUserId}`));
 
   const fetchAdmins = async () => {
     try {
@@ -16,31 +18,41 @@ export default function HomePage() {
         const data = await response.json();
         console.log('Pobrani admini:', data);//debug
         setAdmins(data);
+        if (currentUserId) {
+          console.log('Aktualny użytkownik:', currentUser);//debug
+          setUserInfo(currentUser);
+          const isAdmin = data.includes(currentUser.email);
+          if (isAdmin) {
+            console.log('Przenoszenie do panelu administratora');
+            navigate('/admin-panel');
+          }
+        }
+
     } catch (error) {
         console.log('Błąd podczas pobierania danych adminów:', error);
     }
   };
 
-  const checkIfAdmin = (userEmail) => {
-    const isAdmin = admins.some(admin => admin === userEmail);
-    return isAdmin;
-  };
+  // const checkIfAdmin = (userEmail) => {
+  //   const isAdmin = admins.includes(userEmail);
+  //   return isAdmin;
+  // };
 
   useEffect(() => {
     const initialize = async () => {
       await fetchAdmins();
-      const currentUserId = localStorage.getItem('currentUserId');
-      console.log(currentUserId);//debug
-      if (currentUserId) {
-        const currentUser = JSON.parse(localStorage.getItem(`user_${currentUserId}`));
-        console.log('Aktualny użytkownik:', currentUser);//debug
-        setUserInfo(currentUser);
+      // const currentUserId = localStorage.getItem('currentUserId');
+      // console.log(currentUserId);//debug
+      // if (currentUserId) {
+      //   const currentUser = JSON.parse(localStorage.getItem(`user_${currentUserId}`));
+      //   console.log('Aktualny użytkownik:', currentUser);//debug
+      //   setUserInfo(currentUser);
 
-        if (checkIfAdmin(currentUser.email)) {
-          console.log('Przenoszenie do panelu administratora');
-          navigate('/admin-panel');
-        }
-      }
+      //   if (checkIfAdmin(currentUser.email)) {
+      //     console.log('Przenoszenie do panelu administratora');
+      //     navigate('/admin-panel');
+      //   }
+      // }
     };
 
     initialize();
