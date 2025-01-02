@@ -76,8 +76,8 @@ export default function Reservations() {
             {reservationsEmpty === false && (
                 <div className='reservations'>
                     <h3>Twoje rezerwacje:</h3>
-                    {reservations.map((reservation, index) => (
-                        <ul>
+                    <ul>
+                        {reservations.map((reservation, index) => (
                             <li key={index}>
                                 <div>
                                     <b>Restauracja:</b> {reservation.restaurant.name}, <b>Data: </b>{reservation.date}, <b>Godzina:</b> {reservation.time}, <b>Adres:</b> {reservation.restaurant.city}, ul.{reservation.restaurant.adress}
@@ -85,8 +85,8 @@ export default function Reservations() {
                                 <button onClick={() => handleDeleteClick(reservation)}>Usuń</button>
                                 <button onClick={() => handleChangeClick(reservation)}>Zmień</button>
                             </li>
-                        </ul>
-                    ))}
+                        ))}
+                    </ul>
                 </div>
             )}
         </div>
