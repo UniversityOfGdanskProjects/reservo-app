@@ -27,7 +27,7 @@ export default function RegistryPage() {
       if (response.ok) {
         setMessage('Rejestracja zakończona sukcesem! Zaloguj się, aby przejść do systemu.');
       } else {
-        setMessage('Coś poszło nie tak. Spróbuj ponownie.');
+        setMessage('Istnieje juz konto z takim adresem email');
       }
     } else {
       setMessage('Proszę wpisać dwa razy to samo hasło!');
