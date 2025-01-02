@@ -167,6 +167,42 @@ app.get('/api/restaurants', (req, res) => {
   res.status(200).json(restaurantsWithId);
 });
 
+app.delete('/api/restaurants', (req, res) => {
+  const { id } = req.body;
+
+  const restaurantIndex = restaurantsWithId.findIndex(restaurant => restaurant.id === id);
+  if (restaurantIndex === -1) {
+    return res.status(404).send('Restauracja nie została znaleziona');
+  }
+
+  restaurantsWithId.splice(restaurantIndex, 1);
+  console.log(`Usunięto restaurację}`);
+  
+  res.status(200).send('Restauracja została usunięta');
+});
+
+app.post('/api/restaurants', (req, res) => {
+  const { name, city, adress, deposit } = req.body;
+
+  if (!name || !city || !adress || !deposit) {
+    return res.status(400).send('Wszystkie dane restauracji muszą być przekazane!');
+  }
+
+  const newRestaurant = {
+    id: restaurantsWithId.length + 1,
+    name,
+    city,
+    adress,
+    deposit,
+  };
+
+  restaurantsWithId.push(newRestaurant);
+  console.log('Nowa restauracja:', newRestaurant);
+
+  res.status(201).send('Restauracja została dodana');
+});
+
+
 const admins = ["kanabaj.amelia@gmail.com"];
 
 app.get('/api/admins', (req, res) => {

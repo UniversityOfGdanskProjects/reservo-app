@@ -14,6 +14,7 @@ import Search from './components/Search';
 import AdminPanel from './components/AdminPanel';
 import AdminReservations from './components/AdminReservations';
 import AdminUsers from './components/AdminUsers';
+import AdminRestaurants from './components/AdminRestaurants';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Route path="/admin-panel" element={<AdminPanel />} />
         <Route path="/admin-reservations" element={<AdminReservations />} />
         <Route path="/admin-users" element={<AdminUsers />} />
+        <Route path="/admin-restaurants" element={<AdminRestaurants />} />
       </Routes>
     </Router>
   );
