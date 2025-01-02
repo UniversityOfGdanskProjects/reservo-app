@@ -50,6 +50,19 @@ app.get('/api/users', (req, res) => {
   res.status(200).json(usersInfo);
 });
 
+app.delete('/api/users', (req, res) => {
+  const { email } = req.body;
+
+  const userIndex = users.findIndex(user => user.email === email);
+  if (userIndex === -1) {
+    return res.status(404).send('Użytkownik nie został znaleziony');
+  }
+
+  users.splice(userIndex, 1);
+  console.log(`Usunięto użytkownika: ${email}`);
+  
+  res.status(200).send('Użytkownik został usunięty');
+});
 
 app.post('/api/login', async (req, res) => {
     const { email, password } = req.body;

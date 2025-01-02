@@ -9,7 +9,6 @@ export default function AdminUsers() {
     const userEmail = user.email;
     console.log(userEmail);//debug
     const [isUserAdmin, setIsUserAdmin] = useState(false);
-    const [admins, setAdmins] = useState([]);
     const [loading, setLoading] = useState("Ładowanie danych...");
     const [users, setUsers] = useState([]);
 
@@ -21,7 +20,6 @@ export default function AdminUsers() {
             }
             const data = await response.json();
             console.log('Pobrani admini:', data);//debug
-            setAdmins(data);
             const isAdmin = data.includes(userEmail);
             setIsUserAdmin(isAdmin);
         } catch (error) {
@@ -59,17 +57,43 @@ export default function AdminUsers() {
         fetchUsers();
     }, []);
 
+    const handleDeleteClick = async (email) => {
+        try {
+            const response = await fetch('http://localhost:3000/api/users', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email })
+            });
+
+            if (!response.ok) {
+                throw new Error('Nie udało się usunąć użytkownika');
+            }
+
+            setUsers(prevUsers => prevUsers.filter(user => user.email !== email));
+            console.log('Użytkownik został usunięty');
+        } catch (error) {
+            console.log('Błąd podczas usuwania użytkownika:', error);
+        }
+    };
+
 
     return ( 
         <>
             <div>{loading}</div>
             {isUserAdmin === false && <div>Dostęp tylko dla administratorów</div>}
             {isUserAdmin === true && (
-                
                 <div className='user-list'>
-                    <div>siema</div>
-                    {users.map((user) => (
-                        <div>{user.email}</div>
+                    <h2>Lista użytkowników:</h2>
+                    {users.map((user, index) => (
+                        <div key={index}>
+                            <b> Imię: </b> {user.firstName}
+                            <b> Nazwisko: </b> {user.lastName}
+                            <b> Email: </b> {user.email}
+                            <b> ID: </b> {user.id}
+                            <button onClick={() => handleDeleteClick(user.email)}>Usuń użytkownika</button>
+                        </div>
                     ))}
                 </div>
             )}
