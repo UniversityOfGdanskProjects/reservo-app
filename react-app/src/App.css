@@ -276,6 +276,12 @@ header {
   background-color: rgba(100, 108, 255, 0.6666666667);
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 }
+.reservations-page .reservations .active {
+  color: rgb(73, 199, 102);
+}
+.reservations-page .reservations .expired {
+  color: rgb(234, 47, 47);
+}
 
 .admin-panel {
   display: flex;
@@ -352,8 +358,4 @@ header {
 
 .admin-reservations-page li {
   list-style-type: none;
-}
-
-.expired {
-  color: red;
 }/*# sourceMappingURL=App.css.map */
