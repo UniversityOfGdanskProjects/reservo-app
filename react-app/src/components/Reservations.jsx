@@ -7,18 +7,26 @@ export default function Reservations() {
     const [reservationsEmpty, setReservationsEmpty] = useState(true);
     const currentUserId = localStorage.getItem('currentUserId');
 
-    useEffect(() => {
-        const storedReservations = localStorage.getItem('reservations');
-        if (storedReservations) {
-            const reservations = JSON.parse(storedReservations);
-            console.log("res" + reservations);//debug
-            const filtered = reservations.filter((reservation) => reservation.userId == currentUserId);
+    const fetchReservations = async () => {
+        try {
+            const response = await fetch('http://localhost:3000/api/reservations');
+            if (!response.ok) {
+                throw new Error('Nie udało się pobrać rezerwacji');
+            }
+            const data = await response.json();
+            const filtered = data.filter((reservation) => reservation.userId == currentUserId);
             filtered.map((el) => console.log(el.restaurant));//debug
             setReservations(filtered);
             if (filtered.length >= 1) {
                 setReservationsEmpty(false);
             }
+        } catch (error) {
+            console.log('Błąd podczas pobierania rezerwacji:', error);
         }
+      };
+
+    useEffect(() => {
+        fetchReservations();
     }, []); 
 
     const handleClick = () => {
@@ -60,7 +68,6 @@ export default function Reservations() {
     }
 
     const handleChangeClick = (reservationObject) => {
-        localStorage.setItem('modified', JSON.stringify("true"));
         handleDeleteClick(reservationObject);
         navigate(`/calendar/${reservationObject.restaurant.id}`);
     }
