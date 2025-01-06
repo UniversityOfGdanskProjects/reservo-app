@@ -352,4 +352,8 @@ header {
 
 .admin-reservations-page li {
   list-style-type: none;
+}
+
+.expired {
+  color: red;
 }/*# sourceMappingURL=App.css.map */

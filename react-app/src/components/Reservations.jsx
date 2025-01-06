@@ -4,7 +4,10 @@ import { useNavigate } from 'react-router-dom';
 export default function Reservations() {
     const navigate = useNavigate();
     const [reservations, setReservations] = useState([]);
+    const [expiredReservations, setExpiredReservations] = useState([]);
     const [reservationsEmpty, setReservationsEmpty] = useState(true);
+    const [message, setMessage] = useState("Pokaż historię rezerwacji");
+    const [showHistory, setShowHistory] = useState(false);
     const currentUserId = localStorage.getItem('currentUserId');
 
     const fetchReservations = async () => {
@@ -15,9 +18,32 @@ export default function Reservations() {
             }
             const data = await response.json();
             const filtered = data.filter((reservation) => reservation.userId == currentUserId);
-            filtered.map((el) => console.log(el.restaurant));//debug
-            setReservations(filtered);
-            if (filtered.length >= 1) {
+            const reservationsWithStatus = filtered.map((el) => {
+                const { restaurant, date, time, userId } = el;
+                console.log(el.restaurant)//debug
+                const [hour, minute] = el.time.split(':').map(Number);
+                const reservationDate = new Date(el.date); 
+                reservationDate.setHours(hour, minute, 0, 0);
+                const today = new Date();
+                console.log(today);//debug
+                today.setHours(0, 0, 0, 0);
+                console.log(today);
+                console.log(reservationDate);
+                let status = 'active'
+                if (reservationDate >= today) {
+                    status = 'active';
+                  } else {
+                    status = 'expired';
+                  }
+                const reservation = {restaurant, date, time, userId, status};
+                return reservation;
+            });
+            console.log(reservationsWithStatus[0].status);//debug
+            const activeReservations = reservationsWithStatus.filter((r) => r.status === 'active');
+            setReservations(activeReservations);
+            const expReservations = reservationsWithStatus.filter((r) => r.status === 'expired');
+            setExpiredReservations(expReservations);
+            if (activeReservations.length >= 1) {
                 setReservationsEmpty(false);
             }
         } catch (error) {
@@ -72,6 +98,17 @@ export default function Reservations() {
         navigate(`/calendar/${reservationObject.restaurant.id}`);
     }
 
+    const handleHistoryClick = () => {
+        if (showHistory === false) {
+            setShowHistory(true);
+            setMessage("Zamknij historię rezerwacji");
+        }
+        else {
+            setShowHistory(false);
+            setMessage("Pokaż historię rezerwacji");
+        }
+    }
+
     return (
         <div className='reservations-page'>
             {reservationsEmpty === true && (
@@ -95,6 +132,19 @@ export default function Reservations() {
                         ))}
                     </ul>
                 </div>
+                
+            )}
+            <button onClick={handleHistoryClick}>{message}</button>
+            {showHistory == true && (
+                <ul>
+                    {expiredReservations.map((reservation, index) => (
+                        <li key={index}>
+                            <div>
+                                <b>Restauracja:</b> {reservation.restaurant.name}, <b>Data: </b>{reservation.date}, <b>Godzina:</b> {reservation.time}, <b>Adres:</b> {reservation.restaurant.city}, ul.{reservation.restaurant.adress}, <div className='expired'>wygasła</div>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
             )}
         </div>
     );
