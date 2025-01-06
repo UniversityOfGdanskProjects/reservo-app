@@ -12,8 +12,7 @@ export default function LoginPage() {
     navigate('/registry');
   }
 
-  const handleLoginClick = async (e) => {
-    e.preventDefault();
+  const handleLoginClick = async () => {
 
     const response = await fetch('http://localhost:3000/api/login', {
       method: 'POST',
@@ -29,7 +28,7 @@ export default function LoginPage() {
       localStorage.setItem('currentUserId', data.id);
       navigate('/home');
     } else {
-      alert('Błąd logowania.');
+      alert("Email i hasło nie są prawidłowe");
     }
   };
 
