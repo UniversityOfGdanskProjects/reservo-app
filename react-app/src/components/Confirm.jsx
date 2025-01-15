@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './styles/Confirm.css';
 
 export default function Confirm() {
     const [date, setDate] = useState("");
@@ -112,15 +113,17 @@ export default function Confirm() {
     return (
         <div className="confirm-reservation">
             <h2>Potwierdź rezerwację</h2>
-            <div>Miejsce: {name}, {city}</div>
-            <div>Adres: {adress}</div>
-            <div>Data: {date}</div>
-            <div>Godzina: {time}</div>
-            <div>Kwota depozytu: {deposit},00 zł</div>
+            <div><b>Miejsce:</b> {name}, {city}</div>
+            <div><b>Adres:</b> {adress}</div>
+            <div><b>Data:</b> {date}</div>
+            <div><b>Godzina:</b> {time}</div>
+            <div><b>Kwota depozytu:</b> {deposit},00 zł</div>
             <div className='discount-code'>
-                {message}
-                <input placeholder="Mam kod rabatowy" onChange={(e) => setDiscountCode(e.target.value)}/>
-                <button onClick={handleDiscountClick}>Zatwierdź</button>
+                <div className='message'>{message}</div>
+                <div className='input-area'>
+                    <input placeholder="Mam kod rabatowy" onChange={(e) => setDiscountCode(e.target.value)}/>
+                    <button onClick={handleDiscountClick}>Zatwierdź</button>
+                </div>
             </div>
             {status === "pending" && (
                 <div>
