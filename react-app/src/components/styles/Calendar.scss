@@ -1,0 +1,35 @@
+$primary-color:  #646cffaa;
+
+button {
+    &:active {
+      background-color: $primary-color;
+    }
+}
+
+.calendar {
+    text-align: 'center';
+    margin-top: '20px';
+    ul {
+      list-style-type: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      h3 {
+        grid-column: 1/3;
+      }
+      li {
+        &:nth-of-type(2n + 1) {
+          grid-column: 1;
+        }
+        &:nth-of-type(2n) {
+          grid-column: 2;
+        } 
+      }
+      button {
+        width: 500px;
+      }
+    } 
+    .selected {
+      background-color: $primary-color;
+    }
+  }

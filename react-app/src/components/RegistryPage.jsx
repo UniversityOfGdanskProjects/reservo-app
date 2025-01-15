@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
+import './styles/RegistryPage.css';
 
 export default function RegistryPage() {
   const navigate = useNavigate();

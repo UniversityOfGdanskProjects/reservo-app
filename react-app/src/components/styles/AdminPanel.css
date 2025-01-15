@@ -1,0 +1,15 @@
+button:active {
+  background-color: rgba(100, 108, 255, 0.6666666667);
+}
+
+.admin-panel {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.admin-panel .button-container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}/*# sourceMappingURL=AdminPanel.css.map */

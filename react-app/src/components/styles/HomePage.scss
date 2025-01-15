@@ -1,0 +1,18 @@
+$primary-color:  #646cffaa;
+
+button {
+    &:active {
+      background-color: $primary-color;
+    }
+}
+
+.home {
+    .button-container {
+      display: flex;
+      gap: 16px;
+      justify-content: space-around;
+      button {
+        padding: 16px 40px;
+      }
+    }
+}
