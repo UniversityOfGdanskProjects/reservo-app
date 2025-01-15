@@ -246,9 +246,13 @@ header {
 }
 .reservations-page .no-reservations {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
   flex-direction: column;
+}
+.reservations-page .no-reservations button {
+  margin-bottom: 15px;
 }
 .reservations-page .reservations {
   display: flex;

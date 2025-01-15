@@ -255,9 +255,13 @@ header {
   margin-top: 50px;
   .no-reservations {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
     flex-direction: column;
+    button {
+      margin-bottom: 15px;
+    }
   }
   .reservations {
     display: flex;

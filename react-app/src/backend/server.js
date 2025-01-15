@@ -208,3 +208,9 @@ const admins = ["kanabaj.amelia@gmail.com"];
 app.get('/api/admins', (req, res) => {
   res.status(200).json(admins);
 });
+
+const discountCodes = ["RABAT10", "RABAT20", "PROMO10"];    
+
+app.get('/api/discount-codes', (req, res) => {
+  res.status(200).json(discountCodes);
+})
