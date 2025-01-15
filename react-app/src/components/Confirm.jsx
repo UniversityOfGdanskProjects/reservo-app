@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './styles/Confirm.css';
 
 export default function Confirm() {
     const [date, setDate] = useState("");
@@ -11,7 +12,10 @@ export default function Confirm() {
     const [restaurant, setRestaurant] = useState("");
     const [status, setStatus] = useState("pending"); 
     const [deposit, setDeposit] = useState(0);
+    const [defaultDeposit, setDefaultDeposit] = useState(0);
     const [id, setId] = useState(0);
+    const [discountCode, setDiscountCode] = useState("");
+    const [message, setMessage] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -28,6 +32,7 @@ export default function Confirm() {
             setAdress(reservation.restaurant.adress);
             setRestaurant(reservation.restaurant);
             setDeposit(reservation.restaurant.deposit);
+            setDefaultDeposit(reservation.restaurant.deposit);
             setId(reservation.restaurant.id);
             console.log(id);
         }
@@ -48,7 +53,7 @@ export default function Confirm() {
     }, [timer, status]);
 
     const handleConfirm = () => {
-
+        localStorage.setItem('deposit', deposit);
         navigate('/payment');
     };
 
@@ -80,14 +85,46 @@ export default function Confirm() {
         }
     };
 
+    const handleDiscountClick = async () => {
+        try {
+          const response = await fetch('http://localhost:3000/api/discount-codes');
+          if (!response.ok) {
+            throw new Error('Nie udało się pobrać danych kodów rabatowych');
+          }
+          const data = await response.json();
+          const isDiscountCode = data.includes(discountCode);
+          if (isDiscountCode) {
+            setMessage("");
+            if (discountCode.includes("10")) {
+                setDeposit(defaultDeposit * 0.9);
+            } else if (discountCode.includes("20")) {
+                setDeposit(defaultDeposit * 0.8);
+            } else {
+                setMessage("Błędny kod rabatowy");
+            }
+          } else {
+            setMessage("Błędny kod rabatowy");
+          }
+        } catch (error) {
+          console.log('Błąd podczas pobierania danych kodów rabatowych:', error);
+        } 
+      };
+
     return (
         <div className="confirm-reservation">
             <h2>Potwierdź rezerwację</h2>
-            <div>Miejsce: {name}, {city}</div>
-            <div>Adres: {adress}</div>
-            <div>Data: {date}</div>
-            <div>Godzina: {time}</div>
-            <div>Kwota depozytu: {deposit},00 zł</div>
+            <div><b>Miejsce:</b> {name}, {city}</div>
+            <div><b>Adres:</b> {adress}</div>
+            <div><b>Data:</b> {date}</div>
+            <div><b>Godzina:</b> {time}</div>
+            <div><b>Kwota depozytu:</b> {deposit},00 zł</div>
+            <div className='discount-code'>
+                <div className='message'>{message}</div>
+                <div className='input-area'>
+                    <input placeholder="Mam kod rabatowy" onChange={(e) => setDiscountCode(e.target.value)}/>
+                    <button onClick={handleDiscountClick}>Zatwierdź</button>
+                </div>
+            </div>
             {status === "pending" && (
                 <div>
                     <div>

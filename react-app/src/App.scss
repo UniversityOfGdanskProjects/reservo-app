@@ -255,9 +255,13 @@ header {
   margin-top: 50px;
   .no-reservations {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
     flex-direction: column;
+    button {
+      margin-bottom: 15px;
+    }
   }
   .reservations {
     display: flex;
@@ -284,6 +288,13 @@ header {
       padding: 12px;
       background-color: $primary-color;
       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    }
+    .active {
+      //font-weight: bold;
+      color: rgb(73, 199, 102);
+    }
+    .expired {
+      color: rgb(234, 47, 47);;
     }
   }
 }
@@ -350,11 +361,7 @@ header {
   input {
     display: flex;
     align-self: center;
-    // max-width: 800px;
-    width: 80%;
-    // padding: 12px 20px; 
-    // margin: 20px auto; 
-    // display: block; 
+    width: 80%; 
     border: 2px solid #444; 
     border-radius: 8px; 
     background-color: #222; 
@@ -374,8 +381,4 @@ header {
   li {
     list-style-type: none;
   }
-}
-
-.expired {
-  color: red;
 }

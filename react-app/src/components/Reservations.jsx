@@ -26,8 +26,6 @@ export default function Reservations() {
                 reservationDate.setHours(hour, minute, 0, 0);
                 const today = new Date();
                 console.log(today);//debug
-                today.setHours(0, 0, 0, 0);
-                console.log(today);
                 console.log(reservationDate);
                 let status = 'active'
                 if (reservationDate >= today) {
@@ -136,15 +134,17 @@ export default function Reservations() {
             )}
             <button onClick={handleHistoryClick}>{message}</button>
             {showHistory == true && (
-                <ul>
-                    {expiredReservations.map((reservation, index) => (
-                        <li key={index}>
-                            <div>
-                                <b>Restauracja:</b> {reservation.restaurant.name}, <b>Data: </b>{reservation.date}, <b>Godzina:</b> {reservation.time}, <b>Adres:</b> {reservation.restaurant.city}, ul.{reservation.restaurant.adress}, <div className='expired'>wygasła</div>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
+                <div className='reservations'>
+                    <ul>
+                        {expiredReservations.map((reservation, index) => (
+                            <li key={index}>
+                                <div>
+                                    <b>Restauracja:</b> {reservation.restaurant.name}, <b>Data: </b>{reservation.date}, <b>Godzina:</b> {reservation.time}, <b>Adres:</b> {reservation.restaurant.city}, ul.{reservation.restaurant.adress}
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             )}
         </div>
     );
