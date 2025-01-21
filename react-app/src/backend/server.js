@@ -214,3 +214,35 @@ const discountCodes = ["RABAT10", "RABAT20", "PROMO10"];
 app.get('/api/discount-codes', (req, res) => {
   res.status(200).json(discountCodes);
 })
+
+const opinions = [];
+
+app.post('/api/opinions', (req, res) => {
+  const { content, name, surname, stars, isAnonymous } = req.body;
+  if (isAnonymous === true) {
+    const newOpinion = {
+      content: content,
+      name: "Anonimowa",
+      surname: "opinia",
+      stars: stars,
+    };
+
+    opinions.push(newOpinion);
+    res.status(201).send("Opinia została dodana!")
+  } else {
+    const newOpinion = {
+      content: content,
+      name: name,
+      surname: surname,
+      stars: stars,
+    };
+
+    opinions.push(newOpinion);
+    res.status(201).send("Opinia została dodana!")
+  }
+  
+})
+
+app.get('/api/opinions', (req, res) => {
+  res.status(200).json(opinions);
+})
