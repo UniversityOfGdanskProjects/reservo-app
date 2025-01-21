@@ -40,9 +40,6 @@ export default function HomePage() {
     initialize();
   }, []); 
 
-  const handleCalendarClick = () => {
-    navigate('/calendar');
-  }
   const handleReservationsClick = () => {
     navigate('/reservations');
   }
@@ -56,10 +53,8 @@ export default function HomePage() {
         <>
           <h1>Witaj, {userInfo.firstName} {userInfo.lastName}</h1>
           <div className='button-container'>
-            <button onClick={handleCalendarClick}>Kalendarz</button>
             <button onClick={handleReservationsClick}>Moje rezerwacje</button>
             <button onClick={handleMakeReservationClick}>Nowa rezerwacja</button>
-            <button onClick={handleReservationsClick}>Moje rezerwacje</button>
           </div>
         </>
       ) : (

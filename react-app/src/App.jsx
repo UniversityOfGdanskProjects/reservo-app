@@ -15,14 +15,14 @@ import AdminPanel from './components/AdminPanel';
 import AdminReservations from './components/AdminReservations';
 import AdminUsers from './components/AdminUsers';
 import AdminRestaurants from './components/AdminRestaurants';
+import Rating from './components/Rating';
+import Header from './components/Header';
 
 
 function App() {
   return (
     <Router>
-      <header>
-        Schedulo - your personal reservation manager
-      </header>
+      <Header />
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/home" element={<HomePage />} />
@@ -36,6 +36,7 @@ function App() {
         <Route path="/admin-reservations" element={<AdminReservations />} />
         <Route path="/admin-users" element={<AdminUsers />} />
         <Route path="/admin-restaurants" element={<AdminRestaurants />} />
+        <Route path="/rate-us" element={<Rating />} />
       </Routes>
     </Router>
   );
