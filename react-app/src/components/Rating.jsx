@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles/Rating.css';
 
@@ -24,6 +24,7 @@ export default function Rating() {
     const [surname, setSurname] = useState(null);
     const [isAnonymous, setIsAnonymous] = useState(true);
     const [opinions, setOpinions] = useState([]);
+    const inputRef = useRef(null);
 
     const fetchOpinions = async () => {
         try {
@@ -39,19 +40,27 @@ export default function Rating() {
         }
     }
 
+    useEffect(() => {
+        inputRef.current.focus();
+    }, []);
+
     const handleTextChange = (e) => {
         setText(e.target.value);
-      };
+    };
     
-      const handleStarClick = (value) => {
-        setStars(value);
-      };
+    const handleStarClick = (value) => {
+    setStars(value);
+    };
 
-      const StarRating = ({ rating }) => {
-        const fullStars = '★'.repeat(rating); 
+    const StarRating = ({ rating }) => {
+    const stars = useMemo(() => {
+        const fullStars = '★'.repeat(rating);
         const emptyStars = '☆'.repeat(5 - rating);
-        return <span>{fullStars}{emptyStars}</span>;
-      };
+        return fullStars + emptyStars;
+    }, [rating]);
+    
+    return <span>{stars}</span>;
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -96,22 +105,23 @@ export default function Rating() {
                 <h2>Dodaj swoją opinię</h2>
                 <form onSubmit={handleSubmit}>
                     <textarea
-                    value={text}
-                    onChange={handleTextChange}
-                    placeholder="Napisz swoją opinię..."
-                    rows="5"
-                    required
+                        ref={inputRef}
+                        value={text}
+                        onChange={handleTextChange}
+                        placeholder="Napisz swoją opinię..."
+                        rows="5"
+                        required
                     />
                     <div className="stars">
                     <span>Ocena:</span>
                     {[1, 2, 3, 4, 5].map((value) => (
                         <button
-                        type="button"
-                        key={value}
-                        className={`star ${value <= stars ? "selected" : ""}`}
-                        onClick={() => handleStarClick(value)}
-                        >
-                        ★
+                            type="button"
+                            key={value}
+                            className={`star ${value <= stars ? "selected" : ""}`}
+                            onClick={() => handleStarClick(value)}
+                            >
+                            ★
                         </button>
                     ))}
                     </div>
