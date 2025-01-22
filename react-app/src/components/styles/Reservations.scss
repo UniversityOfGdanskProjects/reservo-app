@@ -1,0 +1,55 @@
+$primary-color:  #646cffaa;
+
+button {
+    &:active {
+      background-color: $primary-color;
+    }
+}
+
+.reservations-page {
+    margin-top: 50px;
+    .no-reservations {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-direction: column;
+      button {
+        margin-bottom: 15px;
+      }
+    }
+    .reservations {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      gap: 16px;
+      ul {
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+      }
+      li {
+        display: flex;
+        gap: 16px;
+        button {
+          //padding: 12px;
+          border: 1px solid $primary-color;
+        }
+      }
+      div {
+        border: 1px solid $primary-color;
+        border-radius: 10px;
+        width: 900px;
+        padding: 12px;
+        background-color: $primary-color;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+      }
+      .active {
+        //font-weight: bold;
+        color: rgb(73, 199, 102);
+      }
+      .expired {
+        color: rgb(234, 47, 47);;
+      }
+    }
+  }

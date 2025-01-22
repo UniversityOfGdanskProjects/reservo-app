@@ -1,0 +1,51 @@
+$primary-color:  #646cffaa;
+
+button {
+    &:active {
+      background-color: $primary-color;
+    }
+}
+
+.registry-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 300px;
+    button {
+      align-items: center;
+      justify-content: center;
+      align-self: center;
+    }
+    input {
+      align-items: center;
+      justify-content: center;
+      width: 200px;
+      height: 24px;
+      font-size: 14px;
+      color: #333;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      &::placeholder {
+        color: #aaa;
+        font-style: italic;
+      }
+      &:hover {
+        background-color: #f9f9f9;
+        border-color: #b3b3b3;
+      }
+    }
+    padding-bottom: 16px;
+    border: 2px solid gray;
+    border-radius: 20px;
+    box-shadow: 
+      0 4px 6px rgba(0, 0, 0, 0.6),
+      0 1px 3px rgba(255, 255, 255, 0.1);
+    p {
+      font-family: Arial, sans-serif;
+      font-size: larger;
+      font-weight: bold;
+    }
+  }

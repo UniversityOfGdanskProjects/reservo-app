@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import { useParams } from 'react-router-dom';
+import './styles/Calendar.css';
 
 export default function BookingCalendar() {
   const { id } = useParams(); 

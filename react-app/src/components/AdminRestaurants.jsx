@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
+import './styles/AdminRestaurants.css';
 
 export default function AdminRestaurants() {
   const currentUserId = localStorage.getItem('currentUserId');

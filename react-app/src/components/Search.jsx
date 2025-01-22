@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './styles/Search.css';
 
 export default function Search() {
     const navigate = useNavigate();
@@ -36,27 +37,25 @@ export default function Search() {
     };
 
     return (
-    <>
-        <div className='search-area'>
-            {error && <div>Wystąpił błąd</div>}
-            {loading && <div>Ładowanie...</div>}
-            <input
-                type="text"
-                placeholder="Szukaj restauracji..."
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
-            />
-            <ul>
-                {filteredRestaurants.map((restaurant) => (
-                <li key={restaurant.id} onClick={() => handleRestaurantClick(restaurant.id)}>
-                    <h2>{restaurant.name}</h2>
-                    <p>Miasto: {restaurant.city}</p>
-                    <p>Adres: {restaurant.adress}</p>
-                </li>
-                ))}
-            </ul>
-        </div>
-    </>
+      <div className='search-area'>
+          {error && <div>Wystąpił błąd</div>}
+          {loading && <div>Ładowanie...</div>}
+          <input
+              type="text"
+              placeholder="Szukaj restauracji..."
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+          />
+          <ul>
+              {filteredRestaurants.map((restaurant) => (
+              <li key={restaurant.id} onClick={() => handleRestaurantClick(restaurant.id)}>
+                  <h2>{restaurant.name}</h2>
+                  <p>Miasto: {restaurant.city}</p>
+                  <p>Adres: {restaurant.adress}</p>
+              </li>
+              ))}
+          </ul>
+      </div>
     );
 }
 
