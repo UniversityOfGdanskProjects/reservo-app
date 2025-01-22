@@ -1,11 +1,12 @@
 import React, { useLayoutEffect } from 'react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './styles/Rating.css';
 
 export default function Rating() {
     useLayoutEffect(() => {
         const currentUserId = localStorage.getItem('currentUserId');
-        const user = localStorage.getItem(`user_${currentUserId}`);
+        const user = JSON.parse(localStorage.getItem(`user_${currentUserId}`));
         console.log(user); //debug
         setName(user.firstName);
         setSurname(user.lastName);
@@ -19,8 +20,8 @@ export default function Rating() {
     const [stars, setStars] = useState(0);
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState("");
-    const [name, setName] = useState(undefined);
-    const [surname, setSurname] = useState(undefined);
+    const [name, setName] = useState(null);
+    const [surname, setSurname] = useState(null);
     const [isAnonymous, setIsAnonymous] = useState(true);
     const [opinions, setOpinions] = useState([]);
 
@@ -46,6 +47,12 @@ export default function Rating() {
         setStars(value);
       };
 
+      const StarRating = ({ rating }) => {
+        const fullStars = '★'.repeat(rating); 
+        const emptyStars = '☆'.repeat(5 - rating);
+        return <span>{fullStars}{emptyStars}</span>;
+      };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
     
@@ -56,14 +63,8 @@ export default function Rating() {
     
         try {
             setError(null);
-            if (typeof name == "string") {
-                setIsAnonymous(false);
-            }
-            else {
-                setIsAnonymous(true);
-                setName("");
-                setSurname("");
-            }
+            const anonymous = !(name && surname); 
+
             const response = await fetch('http://localhost:3000/api/opinions', {
                     method: 'POST',
                     headers: {
@@ -74,7 +75,7 @@ export default function Rating() {
                     name: name,
                     surname: surname,
                     stars: stars,
-                    isAnonymous: isAnonymous,
+                    isAnonymous: anonymous,
                     }),
                 });
             
@@ -124,7 +125,7 @@ export default function Rating() {
                     <li key={index}>
                         <div>
                             {opinion.content}
-                                
+                            <StarRating rating={opinion.stars} />
                             <div className='name'>{opinion.name} {opinion.surname}</div>
                         </div>
 
