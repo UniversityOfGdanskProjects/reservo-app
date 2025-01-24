@@ -17,12 +17,14 @@ import AdminUsers from './components/AdminUsers';
 import AdminRestaurants from './components/AdminRestaurants';
 import Rating from './components/Rating';
 import Header from './components/Header';
+import ReservationNotifications from './components/ReservationNotifications';
 
 
 function App() {
   return (
     <Router>
       <Header />
+      <ReservationNotifications />
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/home" element={<HomePage />} />

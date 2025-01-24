@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles/Search.css';
 
@@ -8,6 +8,7 @@ export default function Search() {
     const [searchText, setSearchText] = useState("");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const inputRef = useRef(null);
 
     const filteredRestaurants = restaurants.filter((restaurant) =>
         restaurant.name.toLowerCase().includes(searchText.toLowerCase()) ||
@@ -32,6 +33,11 @@ export default function Search() {
           });
     }, []);
 
+    useEffect(() => {
+      inputRef.current.focus(); 
+  }, []);
+
+
     const handleRestaurantClick = (restaurantId) => {
         navigate(`/calendar/${restaurantId}`);
     };
@@ -41,6 +47,7 @@ export default function Search() {
           {error && <div>Wystąpił błąd</div>}
           {loading && <div>Ładowanie...</div>}
           <input
+              ref={inputRef}
               type="text"
               placeholder="Szukaj restauracji..."
               value={searchText}
