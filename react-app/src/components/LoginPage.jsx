@@ -98,6 +98,8 @@ export default function LoginPage() {
           />
           <Button
             variant="contained"
+            onClick={handleLoginClick}
+            fullWidth
             sx={{
               backgroundColor: "#646cffaa", 
               "&:hover": {

@@ -18,6 +18,7 @@ import AdminRestaurants from './components/AdminRestaurants';
 import Rating from './components/Rating';
 import Header from './components/Header';
 import ReservationNotifications from './components/ReservationNotifications';
+import MainPage from './components/MainPage';
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
       <Header />
       <ReservationNotifications />
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/registry" element={<RegistryPage />} />
         <Route path="/calendar/:id" element={<Calendar />} />
@@ -39,6 +40,7 @@ function App() {
         <Route path="/admin-users" element={<AdminUsers />} />
         <Route path="/admin-restaurants" element={<AdminRestaurants />} />
         <Route path="/rate-us" element={<Rating />} />
+        <Route path="/" element={<MainPage />}></Route>
       </Routes>
     </Router>
   );

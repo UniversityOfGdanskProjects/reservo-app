@@ -36,7 +36,7 @@ export default function RegistryPage() {
   };
 
   const handleLogIn = () => {
-    navigate('/');
+    navigate('/login');
   };
 
   return (
