@@ -1,69 +1,122 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './styles/LoginPage.css';
+import {
+  TextField,
+  Button,
+  Typography,
+  Container,
+  Box,
+  Stack,
+  Alert,
+} from '@mui/material';
 
 export default function LoginPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [userInfo, setUserInfo] = useState(null);
-  
+  const [error, setError] = useState(false);
+
   const handleRegistryClick = () => {
     navigate('/registry');
-  }
+  };
 
   const handleLoginClick = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
 
-    const response = await fetch('http://localhost:3000/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      setUserInfo(data); 
-      console.log(data);//debug
-      localStorage.setItem(`user_${data.id}`, JSON.stringify(data));
-      localStorage.setItem('currentUserId', data.id);
-      navigate('/home');
-    } else {
-      alert("Email i hasło nie są prawidłowe");
+      if (response.ok) {
+        const data = await response.json();
+        setUserInfo(data);
+        console.log(data); // debug
+        localStorage.setItem(`user_${data.id}`, JSON.stringify(data));
+        localStorage.setItem('currentUserId', data.id);
+        navigate('/home');
+      } else {
+        setError(true);
+      }
+    } catch (err) {
+      console.error('Błąd podczas logowania:', err);
+      setError(true);
     }
   };
 
   return (
-    <div className="registry-login">
-      <p>Zaloguj się</p>
-      <div>
-        <input 
-          type="email" 
-          placeholder="adres email" 
-          id="email" name="email" 
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required 
-        />
-      </div>
-      <div>
-        <input 
-          type="password" 
-          placeholder="hasło" 
-          id="password" 
-          name="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required 
-        />
-      </div>
-      <button className="login" onClick={handleLoginClick}>
-        Zaloguj się
-      </button>
-      <button className="account" onClick={handleRegistryClick}>
-        Utwórz konto
-      </button>
-    </div>
+    <Container maxWidth="xs">
+      <Box sx={{
+        mt: 8,
+        p: 10, 
+        textAlign: 'center',
+        boxShadow: 6, 
+        borderRadius: 2, 
+        backgroundColor: "#323232", 
+      }}>
+        <Typography variant="h4" gutterBottom>
+          Zaloguj się
+        </Typography>
+        {error && (
+          <Alert severity="error" sx={{ mb: 2 }}>
+            Email i hasło nie są prawidłowe
+          </Alert>
+        )}
+        <Stack spacing={2}>
+          <TextField
+            label="Adres email"
+            type="email"
+            variant="outlined"
+            fullWidth
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            sx={{
+              input: {
+                color: '#ffffff', 
+              },
+              label: {
+                color: '#ffffff', 
+              },
+            }}
+          />
+          <TextField
+            label="Hasło"
+            type="password"
+            variant="outlined"
+            fullWidth
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            sx={{
+              input: {
+                color: '#ffffff', 
+              },
+              label: {
+                color: '#ffffff', 
+              },
+            }}
+          />
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "#646cffaa", 
+              "&:hover": {
+                backgroundColor: "#5359c6aa", 
+              },
+            }}
+          >
+            Zaloguj się
+          </Button>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={handleRegistryClick}
+            fullWidth
+          >
+            Utwórz konto
+          </Button>
+        </Stack>
+      </Box>
+    </Container>
   );
 }
- 
