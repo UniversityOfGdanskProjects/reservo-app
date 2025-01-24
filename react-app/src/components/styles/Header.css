@@ -26,4 +26,13 @@ header .opinion {
 }
 header button {
   background-color: #1f1f1f;
+}
+header .home-icon {
+  display: flex;
+  margin-right: 220px;
+  font-size: 24px;
+  cursor: pointer;
+}
+header .home-icon:hover {
+  color: rgba(100, 108, 255, 0.6666666667);
 }/*# sourceMappingURL=Header.css.map */

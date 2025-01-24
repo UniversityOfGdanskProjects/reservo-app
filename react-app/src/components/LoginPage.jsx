@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 import {
   TextField,
   Button,
@@ -11,6 +12,7 @@ import {
 } from '@mui/material';
 
 export default function LoginPage() {
+  const { setLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -35,6 +37,7 @@ export default function LoginPage() {
         console.log(data); // debug
         localStorage.setItem(`user_${data.id}`, JSON.stringify(data));
         localStorage.setItem('currentUserId', data.id);
+        setLoggedIn(true);
         navigate('/home');
       } else {
         setError(true);

@@ -1,10 +1,12 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './styles/Header.css'
+import { AuthContext } from '../context/AuthContext';
+import './styles/Header.css';
+import { FaHome } from 'react-icons/fa';
 
 export default function Header() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const { loggedIn, setLoggedIn } = useContext(AuthContext);
     
     const navigate = useNavigate(); 
   
@@ -13,7 +15,6 @@ export default function Header() {
     };
 
     const handleLoginClick = () => {
-      setLoggedIn(true);
       navigate('/login');
     }
 
@@ -27,9 +28,16 @@ export default function Header() {
       setLoggedIn(false);
       navigate('/');
     }
+
+    const handleHomeClick = () => {
+      navigate('/home');
+    }
   
     return (
       <header>
+        {loggedIn === true && (
+          <FaHome className='home-icon' onClick={handleHomeClick} />
+        )}
         <div>reservo - menager rezerwacji w trójmieście</div>
         <div className='button-container'>
           {loggedIn === true && (
