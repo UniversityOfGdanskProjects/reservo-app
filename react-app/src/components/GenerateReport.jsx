@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { jsPDF } from "jspdf";
+import "../fonts/Roboto-Italic-VariableFont_wdth,wght-normal.js"
 
 const GenerateReport = ({ apiEndpoint, reportType, reservationsEndpoint, restaurantsEndpoint }) => {
   const [restaurants, setRestaurants] = useState([]);
@@ -12,8 +13,6 @@ const GenerateReport = ({ apiEndpoint, reportType, reservationsEndpoint, restaur
         if (!res.ok) {
           throw new Error("Nie udało się pobrać restauracji");
         }
-
-        const contentType = res.headers.get('Content-Type');
 
         const data = await res.json();
         console.log("Pobrane restauracje:", data); 
@@ -29,8 +28,6 @@ const GenerateReport = ({ apiEndpoint, reportType, reservationsEndpoint, restaur
         if (!res.ok) {
           throw new Error("Nie udało się pobrać rezerwacji");
         }
-
-        const contentType = res.headers.get('Content-Type');
 
         const data = await res.json();
         console.log("Pobrane rezerwacje:", data); 
@@ -59,7 +56,7 @@ const GenerateReport = ({ apiEndpoint, reportType, reservationsEndpoint, restaur
     try {
       const doc = new jsPDF();
 
-      doc.setFont('helvetica');
+      doc.setFont('Roboto-Italic-VariableFont_wdth,wght', 'normal');
       doc.setFontSize(12);
 
       if (reportType === "Użytkownicy") {
@@ -67,8 +64,6 @@ const GenerateReport = ({ apiEndpoint, reportType, reservationsEndpoint, restaur
         if (!response.ok) {
           throw new Error("Błąd podczas pobierania użytkowników");
         }
-
-        const contentType = response.headers.get('Content-Type');
 
         const data = await response.json();
 
