@@ -18,6 +18,12 @@ export default function Header() {
     }
 
     const handleLogoutClick = () => {
+      localStorage.removeItem('currentUserId');
+      Object.keys(localStorage).forEach((key) => {
+        if (key.startsWith('user_')) {
+          localStorage.removeItem(key);
+        }
+      });
       setLoggedIn(false);
       navigate('/');
     }
