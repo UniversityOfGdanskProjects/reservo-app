@@ -63,7 +63,6 @@ export default function Reservations() {
                 const reservation = {restaurant, date, time, userId, status};
                 return reservation;
             });
-            //console.log(reservationsWithStatus[0].status);//debug
             const activeReservations = reservationsWithStatus.filter((r) => r.status === 'active');
             setReservations(activeReservations);
             const expReservations = reservationsWithStatus.filter((r) => r.status === 'expired');
