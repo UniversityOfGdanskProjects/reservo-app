@@ -6,10 +6,10 @@ import './styles/Rating.css';
 export default function Rating() {
     useLayoutEffect(() => {
         const currentUserId = localStorage.getItem('currentUserId');
-        const user = JSON.parse(localStorage.getItem(`user_${currentUserId}`));
-        console.log(user); //debug
-        setName(user.firstName);
-        setSurname(user.lastName);
+        const user = JSON.parse(localStorage.getItem(`user_${currentUserId}`)) || {};
+        console.log(user); //debugs
+        setName(user.firstName || "");
+        setSurname(user.lastName || "");
     });
 
     useEffect(() => {
@@ -81,8 +81,7 @@ export default function Rating() {
                     },
                     body: JSON.stringify({
                     content: text,
-                    name: name,
-                    surname: surname,
+                    ...(anonymous ? {} : { name, surname }),
                     stars: stars,
                     isAnonymous: anonymous,
                     }),

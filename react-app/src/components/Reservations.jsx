@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles/Reservations.css';
+import emailjs from 'emailjs-com';
 
 export default function Reservations() {
     const navigate = useNavigate();
@@ -10,6 +11,31 @@ export default function Reservations() {
     const [message, setMessage] = useState("Pokaż historię rezerwacji");
     const [showHistory, setShowHistory] = useState(false);
     const currentUserId = localStorage.getItem('currentUserId');
+    const user = JSON.parse(localStorage.getItem(`user_${currentUserId}`));
+    const userEmail = user.email
+
+    const sendEmail = async (toEmail, reservation) => {
+        const templateParams = {
+            to_email: toEmail,                           
+            restaurant_name: reservation.restaurant.name, 
+            reservation_date: reservation.date,     
+            reservation_time: reservation.time,  
+        };
+
+        try {
+            const response = await emailjs.send(
+                'service_yvqvc86',  //serviceID
+                'template_e20ndjp', //templateID
+                templateParams,
+                '0zNaibg2kPW4j-Cuv' //Public Key
+            );
+            
+
+            console.log('Email wysłany:', response.status, response.text);
+        } catch (error) {
+            console.error('Błąd wysyłania maila:', error);
+        }
+    };
 
     const fetchReservations = async () => {
         try {
@@ -37,7 +63,6 @@ export default function Reservations() {
                 const reservation = {restaurant, date, time, userId, status};
                 return reservation;
             });
-            console.log(reservationsWithStatus[0].status);//debug
             const activeReservations = reservationsWithStatus.filter((r) => r.status === 'active');
             setReservations(activeReservations);
             const expReservations = reservationsWithStatus.filter((r) => r.status === 'expired');
@@ -81,6 +106,7 @@ export default function Reservations() {
                 !(r.restaurant.id === restaurant.id && r.date === date && r.time === time)
             );
             setReservations(updatedReservations);
+            sendEmail(userEmail, reservationObject);
             localStorage.setItem('reservations', JSON.stringify(updatedReservations));
             
             if (updatedReservations.length === 0) {

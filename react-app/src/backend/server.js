@@ -147,14 +147,15 @@ const restaurants = [
   {name:"Pueblo", city:"Gdynia", adress: "Antoniego Abrahama 56", deposit: 12},
   {name:"Prosty Temat Sopot", city:"Sopot", adress: "Bohaterów Monte Cassino 60", deposit: 40},
   {name:"Tapas de Rucola", city:"Sopot", adress: "Generała Kazimierza Pułaskiego 15", deposit: 20},
-  {name:"Bistro Oliwa", city:"Gdańsk", adress: "", deposit: 15},
-  {name:"Hashi Sushi", city:"Gdańsk", adress: "", deposit: 20},
-  {name:"Hashi Sushi", city:"Gdynia", adress: "", deposit: 17},
-  {name:"Pierogarnia Mandu", city:"Gdańsk", adress: "", deposit: 15}, 
-  {name:"Pierogarnia Mandu", city:"Gdynia", adress: "", deposit: 15},
-  {name:"Kebab DRWAL", city:"Gdańsk", adress: "", deposit: 5},
-  {name:"Lolo Thai Jolo", city:"Gdynia", adress: "", deposit: 8},
-  {name:"Pyra Bar Gdynia", city:"Gdynia", adress: "", deposit: 5},
+  {name:"Bistro Oliwa", city:"Gdańsk", adress: "Aleja Grunwaldzka 501/4", deposit: 15},
+  {name:"Hashi Sushi", city:"Gdańsk", adress: "Aleja Rzeczypospolitej 4/149", deposit: 20},
+  {name:"Hashi Sushi", city:"Gdynia", adress: "Przebendowskich 38", deposit: 17},
+  {name:"Pierogarnia Mandu Gdańsk Śródmieście", city:"Gdańsk", adress: "Elżbietańska 4/8", deposit: 15}, 
+  {name:"Pierogarnia Mandu Gdańsk Oliwa", city:"Gdańsk", adress: "Kaprów 19d", deposit: 15},
+  {name:"Pierogarnia Mandu", city:"Gdynia", adress: "Starowiejska 1", deposit: 15},
+  {name:"Kebab DRWAL", city:"Gdańsk", adress: "Śląska 17a", deposit: 5},
+  {name:"Lolo Thai Jolo", city:"Gdynia", adress: "Jana z Kolna 2", deposit: 8},
+  {name:"Pyra Bar Gdynia", city:"Gdynia", adress: "Skwer Kościuszki 24", deposit: 5},
   {name:"HAOS", city:"Gdynia", adress: "Starowiejska 14", deposit: 12}
 ];
 

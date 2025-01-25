@@ -49,27 +49,3 @@ button {
     background-color: $primary-color;
   }
 }
-
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 60px;
-  background-color: #1f1f1f; 
-  color: #f0f0f0; 
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 300px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7); 
-  z-index: 1000; 
-  text-transform: uppercase; 
-  font-family: 'Arial', sans-serif;
-  font-weight: bold;
-  letter-spacing: 2px;
-  .opinion {
-    margin-right: 20px;
-    background-color: #1f1f1f;
-  }
-}

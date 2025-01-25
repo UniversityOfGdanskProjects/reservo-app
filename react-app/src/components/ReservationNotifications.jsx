@@ -28,23 +28,24 @@ const ReservationNotifications = () => {
     };
 
     const checkReservations = async (reservations) => {
-        console.log("sprawdzam rezerwacje...")//debug
+        console.log("sprawdzam rezerwacje..."); //debug
         const now = new Date();
-
-        for (const reservation of reservations) {
+    
+        const tasks = reservations.map(async (reservation) => {
             const reservationDateTime = new Date(`${reservation.date} ${reservation.time}`);
             const timeDifference = reservationDateTime - now;
-
+    
             if (timeDifference > 0 && timeDifference <= 3600000 && timeDifference >= 3500000) {
                 try {
                     const userEmail = await fetchUserEmail(reservation.userId);
-
                     await sendEmail(userEmail, reservation);
                 } catch (error) {
                     console.error('Błąd w procesie sprawdzania rezerwacji:', error);
                 }
             }
-        }
+        });
+    
+        await Promise.all(tasks);
     };
 
     const fetchReservations = async () => {
