@@ -68,6 +68,10 @@ export default function RegistryPage() {
           }
           if (!values.password) {
             errors.password = 'Wymagane hasło';
+          } else if (values.password.length < 8) {
+            errors.password = 'Hasło musi mieć co najmniej 8 znaków';
+          } else if (!/[A-Z]/.test(values.password)) {
+            errors.password = 'Hasło musi zawierać co najmniej jedną dużą literę';
           }
           if (!values.confirmPassword) {
             errors.confirmPassword = 'Wymagane potwierdzenie hasła';
