@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import './styles/Payment.css';
 
 export default function Payment() {
     const navigate = useNavigate();

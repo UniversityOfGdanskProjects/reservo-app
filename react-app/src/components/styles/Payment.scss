@@ -1,0 +1,89 @@
+$primary-color:  #646cffaa;
+$background-color: #242424;
+$text-color: #ffffff;
+$border-color: #4d4d4d;
+$hover-color: lighten($primary-color, 4%);
+
+button {
+    &:active {
+      background-color: $primary-color;
+    }
+}
+
+.payment {
+  background-color: $background-color;
+  color: $text-color;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  margin: 2rem auto;
+
+  h2 {
+    color: $primary-color;
+    margin-bottom: 1rem;
+  }
+
+  div {
+    margin-bottom: 1.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  form {
+    div {
+      margin-bottom: 0.75rem;
+
+      label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        input[type="radio"] {
+          margin-right: 0.5rem;
+          accent-color: $primary-color; 
+        }
+      }
+    }
+  }
+
+  p {
+    font-size: 1rem;
+    color: $primary-color;
+    margin-top: 0.5rem;
+  }
+
+  button {
+    background-color: $primary-color;
+    color: $text-color;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: $hover-color;
+    }
+  }
+
+  .status {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+
+    &.confirmed {
+      background-color: lighten($primary-color, 15%);
+      color: $background-color;
+    }
+
+    &.error {
+      background-color: #e74c3c; 
+      color: $text-color;
+    }
+  }
+}
