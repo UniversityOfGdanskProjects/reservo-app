@@ -33,7 +33,7 @@ export default function Reservations() {
 
             console.log('Email wysłany:', response.status, response.text);
         } catch (error) {
-            console.error('Błąd wysyłania maila:', error);
+            console.log('Błąd wysyłania maila:', error);
         }
     };
 
@@ -47,14 +47,11 @@ export default function Reservations() {
             const filtered = data.filter((reservation) => reservation.userId == currentUserId);
             const reservationsWithStatus = filtered.map((el) => {
                 const { restaurant, date, time, userId } = el;
-                console.log(el.restaurant)//debug
                 const [hour, minute] = el.time.split(':').map(Number);
                 const reservationDate = new Date(el.date); 
                 reservationDate.setHours(hour, minute, 0, 0);
                 const today = new Date();
-                console.log(today);//debug
-                console.log(reservationDate);
-                let status = 'active'
+                let status = 'active';
                 if (reservationDate >= today) {
                     status = 'active';
                   } else {
@@ -87,9 +84,6 @@ export default function Reservations() {
         try {
             const { restaurant, date, time } = reservationObject;
             const id = restaurant.id;
-            console.log(id);//debug
-            console.log(reservationObject);//debug
-            console.log('Dane wysyłane do usunięcia:', { id, date, time });//debug
             const response = await fetch("http://localhost:3000/api/reservations", {
                 method: 'DELETE',
                 headers: {

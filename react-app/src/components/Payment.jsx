@@ -12,7 +12,6 @@ export default function Payment() {
     useEffect(() => {
         const storedDeposit = localStorage.getItem('deposit');
         const deposit = JSON.parse(storedDeposit);
-        console.log(deposit);//debug
         setDeposit(deposit);
     }, []);
 

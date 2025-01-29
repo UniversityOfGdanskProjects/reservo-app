@@ -15,7 +15,6 @@ const GenerateReport = ({ apiEndpoint, reportType, reservationsEndpoint, restaur
         }
 
         const data = await res.json();
-        console.log("Pobrane restauracje:", data); 
         setRestaurants(data); 
       } catch (error) {
         console.error("Błąd pobierania restauracji:", error);
@@ -30,7 +29,6 @@ const GenerateReport = ({ apiEndpoint, reportType, reservationsEndpoint, restaur
         }
 
         const data = await res.json();
-        console.log("Pobrane rezerwacje:", data); 
         setReservations(data);  
       } catch (error) {
         console.error("Błąd pobierania rezerwacji:", error);
@@ -115,7 +113,7 @@ const GenerateReport = ({ apiEndpoint, reportType, reservationsEndpoint, restaur
 
       doc.save(`${reportType}_Raport.pdf`);
     } catch (error) {
-      console.error("Błąd generowania raportu:", error);
+      console.log("Błąd generowania raportu:", error);
     }
   };
 

@@ -102,10 +102,10 @@ export default function AdminUsers() {
                     <h2>Lista użytkowników:</h2>
                     {state.users.map((user, index) => (
                         <div key={index}>
-                            <b> Imię:</b>{user.firstName} 
-                            <b> Nazwisko:</b>{user.lastName}
-                            <b> Email:</b>{user.email}
-                            <b> ID:</b>{user.id}
+                            <b>  Imię:</b>{user.firstName} 
+                            <b>  Nazwisko:</b>{user.lastName}
+                            <b>  Email:</b>{user.email}
+                            <b>  ID:</b>{user.id}
                             <button onClick={() => handleDeleteClick(user.email)}>Usuń użytkownika</button>
                         </div>
                     ))}

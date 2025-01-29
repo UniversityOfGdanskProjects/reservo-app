@@ -28,7 +28,6 @@ const ReservationNotifications = () => {
     };
 
     const checkReservations = async (reservations) => {
-        console.log("sprawdzam rezerwacje..."); //debug
         const now = new Date();
     
         const tasks = reservations.map(async (reservation) => {
@@ -58,7 +57,7 @@ const ReservationNotifications = () => {
             const reservations = await response.json();
             await checkReservations(reservations);
         } catch (error) {
-            console.error('Błąd podczas pobierania rezerwacji:', error);
+            console.log('Błąd podczas pobierania rezerwacji:', error);
         }
     };
 
@@ -71,10 +70,9 @@ const ReservationNotifications = () => {
 
             const users = await response.json();
             const user = users.find(user => user.id == userId);
-            console.log(user.email);//debug
             return user.email;
         } catch (error) {
-            console.error('Błąd podczas pobierania e-maila użytkownika:', error);
+            console.log('Błąd podczas pobierania e-maila użytkownika:', error);
             return null;
         }
     };

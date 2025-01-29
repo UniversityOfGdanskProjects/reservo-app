@@ -16,13 +16,10 @@ export default function HomePage() {
             throw new Error('Nie udało się pobrać danych adminów');
         }
         const data = await response.json();
-        console.log('Pobrani admini:', data);//debug
         if (currentUserId) {
-          console.log('Aktualny użytkownik:', currentUser);//debug
           setUserInfo(currentUser);
           const isAdmin = data.includes(currentUser.email);
           if (isAdmin) {
-            console.log('Przenoszenie do panelu administratora');
             navigate('/admin-panel');
           }
         }
