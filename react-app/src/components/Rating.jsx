@@ -96,7 +96,11 @@ export default function Rating() {
         } catch (err) {
           setError("Wystąpił błąd podczas wysyłania opinii. Spróbuj ponownie.");
         }
-      };
+    };
+
+    function capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
 
     return (
         <div className='opinions'>
@@ -135,9 +139,8 @@ export default function Rating() {
                         <div>
                             {opinion.content}
                             <StarRating rating={opinion.stars} />
-                            <div className='name'>{opinion.name} {opinion.surname}</div>
+                            <div className='name'>{capitalize(opinion.name)} {capitalize(opinion.surname)}</div>
                         </div>
-
                     </li>
                 ))}
             </ul>
