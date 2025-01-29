@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import './styles/Payment.css';
 
 export default function Payment() {
     const navigate = useNavigate();
@@ -11,7 +12,6 @@ export default function Payment() {
     useEffect(() => {
         const storedDeposit = localStorage.getItem('deposit');
         const deposit = JSON.parse(storedDeposit);
-        console.log(deposit);//debug
         setDeposit(deposit);
     }, []);
 

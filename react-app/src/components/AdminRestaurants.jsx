@@ -66,7 +66,7 @@ export default function AdminRestaurants() {
       if (!response.ok) {
         throw new Error('Nie udało się usunąć restauracji');
       }
-
+      
       setRestaurants(prevRestaurants => prevRestaurants.filter(restaurant => restaurant.id !== id));
       console.log('Restauracja została usunięta');
     } catch (error) {

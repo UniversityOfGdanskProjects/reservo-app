@@ -21,7 +21,6 @@ export default function AdminReservations() {
             const data = await response.json();
             const isAdmin = data.includes(userEmail);
             setIsUserAdmin(isAdmin);
-            console.log("czy admin?", isAdmin);//debug
         } catch (error) {
             console.log('Błąd podczas pobierania danych adminów:', error);
         }
@@ -44,16 +43,12 @@ export default function AdminReservations() {
                 throw new Error('Nie udało się pobrać rezerwacji');
             }
             const data = await response.json();
-            //const filtered = data.filter((reservation) => reservation.userId == currentUserId);
             const reservationsWithStatus = data.map((el) => {
                 const { restaurant, date, time, userId } = el;
-                console.log(el.restaurant)//debug
                 const [hour, minute] = el.time.split(':').map(Number);
                 const reservationDate = new Date(el.date); 
                 reservationDate.setHours(hour, minute, 0, 0);
                 const today = new Date();
-                console.log(today);//debug
-                console.log(reservationDate);
                 let status = 'active'
                 if (reservationDate >= today) {
                     status = 'active';
@@ -80,9 +75,6 @@ export default function AdminReservations() {
         try {
             const { restaurant, date, time } = reservationObject;
             const id = restaurant.id;
-            console.log(id);//debug
-            console.log(reservationObject);//debug
-            console.log('Dane wysyłane do usunięcia:', { id, date, time });//debug
             const response = await fetch("http://localhost:3000/api/reservations", {
                 method: 'DELETE',
                 headers: {
@@ -105,7 +97,7 @@ export default function AdminReservations() {
                 setReservationsEmpty(true);
             }
         } catch (error) {
-            console.error(error);
+            console.log(error);
             alert('Wystąpił błąd podczas usuwania rezerwacji');
         }
     }

@@ -7,7 +7,6 @@ export default function Rating() {
     useLayoutEffect(() => {
         const currentUserId = localStorage.getItem('currentUserId');
         const user = JSON.parse(localStorage.getItem(`user_${currentUserId}`)) || {};
-        console.log(user); //debugs
         setName(user.firstName || "");
         setSurname(user.lastName || "");
     });
@@ -33,7 +32,6 @@ export default function Rating() {
                 throw new Error("Nie udało się pobrać danych")
             }
             const data = await response.json();
-            console.log("Pobrane opinie:", data); //debug
             setOpinions(data);
         } catch (error) {
             console.log("Błąd podczas pobierania opinii:", error);
@@ -53,13 +51,12 @@ export default function Rating() {
     };
 
     const StarRating = ({ rating }) => {
-    const stars = useMemo(() => {
-        const fullStars = '★'.repeat(rating);
-        const emptyStars = '☆'.repeat(5 - rating);
-        return fullStars + emptyStars;
-    }, [rating]);
-    
-    return <span>{stars}</span>;
+        const stars = useMemo(() => {
+            const fullStars = '★'.repeat(rating);
+            const emptyStars = '☆'.repeat(5 - rating);
+            return fullStars + emptyStars;
+        }, [rating]);
+        return <span>{stars}</span>;
     };
 
     const handleSubmit = async (e) => {
@@ -96,7 +93,11 @@ export default function Rating() {
         } catch (err) {
           setError("Wystąpił błąd podczas wysyłania opinii. Spróbuj ponownie.");
         }
-      };
+    };
+
+    function capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
 
     return (
         <div className='opinions'>
@@ -135,9 +136,8 @@ export default function Rating() {
                         <div>
                             {opinion.content}
                             <StarRating rating={opinion.stars} />
-                            <div className='name'>{opinion.name} {opinion.surname}</div>
+                            <div className='name'>{capitalize(opinion.name)} {capitalize(opinion.surname)}</div>
                         </div>
-
                     </li>
                 ))}
             </ul>

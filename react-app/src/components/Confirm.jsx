@@ -24,7 +24,6 @@ export default function Confirm() {
         const pendingReservation = localStorage.getItem(`pending-reservation-${currentUserId}`);
         if (pendingReservation) {
             const reservation = JSON.parse(pendingReservation);
-            console.log(reservation);//debug
             setDate(reservation.date);
             setTime(reservation.time);
             setCity(reservation.restaurant.city);
@@ -34,7 +33,6 @@ export default function Confirm() {
             setDeposit(reservation.restaurant.deposit);
             setDefaultDeposit(reservation.restaurant.deposit);
             setId(reservation.restaurant.id);
-            console.log(id);
         }
     }, []);
 
@@ -68,7 +66,6 @@ export default function Confirm() {
         }
 
         try {
-            console.log('Dane wysyłane do usunięcia:', { id, date, time });//debug
             const response = await fetch('http://localhost:3000/api/reservations', {
                 method: 'DELETE',
                 headers: {
@@ -78,10 +75,10 @@ export default function Confirm() {
             });
 
             if (!response.ok) {
-                console.error("Błąd podczas anulowania rezerwacji:", await response.text());
+                console.log("Błąd podczas anulowania rezerwacji:", await response.text());
             }
         } catch (error) {
-            console.error("Błąd podczas anulowania rezerwacji:", error);
+            console.log("Błąd podczas anulowania rezerwacji:", error);
         }
     };
 

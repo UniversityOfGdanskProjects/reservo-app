@@ -34,7 +34,6 @@ export default function LoginPage() {
       if (response.ok) {
         const data = await response.json();
         setUserInfo(data);
-        console.log(data); // debug
         localStorage.setItem(`user_${data.id}`, JSON.stringify(data));
         localStorage.setItem('currentUserId', data.id);
         setLoggedIn(true);

@@ -1,8 +1,50 @@
-# React + Vite
+# Reservo - Zarządzanie rezerwacjami Trójmiasto
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplikacja webowa do zarządzania rezerwacjami w Trójmieście. Projekt jest napisany w React z wykorzystaniem Vite oraz posiada własne API, które należy uruchomić osobno.
 
-Currently, two official plugins are available:
+## Technologie
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React + Vite
+- Node.js + Express (API)
+- SCSS (stylowanie)
+
+## Instalacja i uruchomienie
+
+### 1. Backend (API)
+
+1. Zainstaluj zależności:
+   ```sh
+   npm install
+   ```
+2. Uruchom serwer API:
+   ```sh
+   node src/backend/server.js
+   ```
+   API powinno być teraz dostępne pod `http://localhost:3000`.
+
+### 2. Frontend (React)
+
+1. Zainstaluj zależności:
+   ```sh
+   npm install
+   ```
+2. Uruchom aplikację:
+   ```sh
+   npm run dev
+   ```
+   Aplikacja będzie dostępna pod `http://localhost:5173`.
+
+## Wymagania
+
+- Node.js v16+
+
+## Funkcjonalności
+
+- Tworzenie, edytowanie i usuwanie rezerwacji
+- Przeglądanie wolnych terminów
+- Powiadomienia e-mail o rezerwacjach
+- Panel administracyjny
+
+## Autor
+
+Amelia Kanabaj

@@ -1,0 +1,60 @@
+$primary-color:  #646cffaa;
+$background-color: #242424;
+$text-color: #ffffff;
+$error-color: #e74c3c; 
+$button-hover-color: lighten($primary-color, 10%);
+
+.user-list {
+  background-color: $background-color;
+  color: $text-color;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  max-width: 800px;
+  margin: 2rem auto;
+
+  h2 {
+    color: $primary-color;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.8rem;
+  }
+
+  div {
+    background-color: lighten($background-color, 5%);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+    b {
+      color: $primary-color;
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+    button {
+      background-color: $primary-color;
+      color: $text-color;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      margin-left: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: $button-hover-color;
+      }
+    }
+  }
+}
+
+.error {
+  color: $error-color;
+  text-align: center;
+  margin: 1rem 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}

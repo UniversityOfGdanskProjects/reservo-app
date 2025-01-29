@@ -29,7 +29,6 @@ export default function BookingCalendar() {
       })
       .then((data) => {
         const filteredRestaurant = data.filter((restaurant) => restaurant.id == id);
-        console.log(filteredRestaurant[0]);//debug
         const restaurant = filteredRestaurant[0];
         setRestaurant(restaurant);
       })
@@ -62,7 +61,7 @@ export default function BookingCalendar() {
 
     const reservation = {
       restaurant: restaurant,
-      date: selectedDate.toLocaleDateString('en-CA'),//zmiana
+      date: selectedDate.toLocaleDateString('en-CA'),
       time: selectedTime,
       userId: currentUserId,
     };
@@ -90,7 +89,7 @@ export default function BookingCalendar() {
   };
 
   const getFilteredHours = () => {
-    const selectedDateString = selectedDate.toLocaleDateString('en-CA');//zmiana
+    const selectedDateString = selectedDate.toLocaleDateString('en-CA');
     const takenHours = reservations
       .filter((res) => res.date === selectedDateString)
       .map((res) => res.time);

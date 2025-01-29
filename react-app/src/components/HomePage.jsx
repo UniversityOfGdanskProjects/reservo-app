@@ -16,13 +16,10 @@ export default function HomePage() {
             throw new Error('Nie udało się pobrać danych adminów');
         }
         const data = await response.json();
-        console.log('Pobrani admini:', data);//debug
         if (currentUserId) {
-          console.log('Aktualny użytkownik:', currentUser);//debug
           setUserInfo(currentUser);
           const isAdmin = data.includes(currentUser.email);
           if (isAdmin) {
-            console.log('Przenoszenie do panelu administratora');
             navigate('/admin-panel');
           }
         }
@@ -30,7 +27,7 @@ export default function HomePage() {
     } catch (error) {
         console.log('Błąd podczas pobierania danych adminów:', error);
     }
-  };
+  }
 
   useEffect(() => {
     const initialize = async () => {
@@ -47,11 +44,15 @@ export default function HomePage() {
     navigate('/search');
   }
 
+  function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
   return (
     <div className='home'>
       {userInfo ? ( 
         <>
-          <h1>Witaj, {userInfo.firstName} {userInfo.lastName}</h1>
+          <h1>Witaj, {capitalize(userInfo.firstName)} {capitalize(userInfo.lastName)}</h1>
           <div className='button-container'>
             <button onClick={handleReservationsClick}>Moje rezerwacje</button>
             <button onClick={handleMakeReservationClick}>Nowa rezerwacja</button>
