@@ -24,10 +24,10 @@ export default function Reservations() {
 
         try {
             const response = await emailjs.send(
-                'service_yvqvc86',  //serviceID
-                'template_e20ndjp', //templateID
+                'service_yvqvc86',  
+                'template_e20ndjp', 
                 templateParams,
-                '0zNaibg2kPW4j-Cuv' //Public Key
+                '0zNaibg2kPW4j-Cuv' 
             );
             
 
