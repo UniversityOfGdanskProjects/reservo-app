@@ -1,0 +1,29 @@
+$primary-color:  #646cffaa;
+
+.main-page {
+    text-align: center; 
+    
+    h2 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+  
+    div {
+      margin-top: 1rem;
+  
+      button {
+        background-color: $primary-color; 
+        color: #fff; 
+        border: none;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+  
+        &:hover {
+          text-decoration: underline; 
+          background-color: darken($primary-color, 5%); 
+        }
+      }
+    }
+  }

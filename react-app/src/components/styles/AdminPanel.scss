@@ -1,0 +1,20 @@
+$primary-color:  #646cffaa;
+
+button {
+    &:active {
+      background-color: $primary-color;
+    }
+}
+
+.admin-panel {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    .button-container {
+      margin-top: 50px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      
+    }
+  }

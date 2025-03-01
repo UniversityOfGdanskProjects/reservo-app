@@ -1,0 +1,99 @@
+.opinions {
+  margin-top: 20px;
+  background-color: #242424;
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+}
+.opinions .opinion-form {
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+.opinions .opinion-form h2 {
+  color: rgba(100, 108, 255, 0.6666666667);
+  margin-bottom: 10px;
+}
+.opinions .opinion-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.opinions .opinion-form form textarea {
+  background-color: #333;
+  color: #ffffff;
+  border: 1px solid rgba(100, 108, 255, 0.6666666667);
+  border-radius: 4px;
+  padding: 10px;
+  resize: none;
+}
+.opinions .opinion-form form textarea:focus {
+  outline: none;
+  border-color: rgba(151, 156, 255, 0.6666666667);
+  box-shadow: 0 0 5px rgba(202, 205, 255, 0.6666666667);
+}
+.opinions .opinion-form form .stars {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.opinions .opinion-form form .stars span {
+  color: #ffffff;
+}
+.opinions .opinion-form form .stars .star {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.opinions .opinion-form form .stars .star.selected {
+  color: rgba(100, 108, 255, 0.6666666667);
+}
+.opinions .opinion-form form .stars .star:hover {
+  color: rgba(151, 156, 255, 0.6666666667);
+}
+.opinions .opinion-form form .error {
+  color: #ff5252;
+  font-size: 14px;
+}
+.opinions .opinion-form form .success {
+  color: #4caf50;
+  font-size: 14px;
+}
+.opinions .opinion-form form button[type=submit] {
+  background-color: rgba(100, 108, 255, 0.6666666667);
+  color: #ffffff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.opinions .opinion-form form button[type=submit]:hover {
+  background-color: rgba(151, 156, 255, 0.6666666667);
+}
+.opinions ul {
+  list-style: none;
+  padding: 0;
+}
+.opinions ul li {
+  background-color: #1a1a1a;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+.opinions ul li div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.opinions ul li div .name {
+  color: white;
+  font-size: 14px;
+}/*# sourceMappingURL=Rating.css.map */

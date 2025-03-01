@@ -1,0 +1,73 @@
+button:active {
+  background-color: rgba(100, 108, 255, 0.6666666667);
+}
+
+.registry-page {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+.registry-page .login-button {
+  background-color: transparent;
+  color: #007bff;
+  border: none;
+  text-decoration: underline;
+  font-size: 16px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.registry-page .login-button:hover {
+  color: #0056b3;
+  text-decoration: none;
+}
+.registry-page .login-button:active {
+  color: #003366;
+}
+.registry-page h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.registry-page p {
+  color: green;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.registry-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.registry-page input {
+  width: 300px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.2s;
+}
+.registry-page label {
+  margin-right: 8px;
+}
+.registry-page button {
+  margin-bottom: 16px;
+  background-color: rgba(100, 108, 255, 0.6666666667);
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.registry-page button:hover {
+  background-color: rgba(98, 106, 255, 0.431372549);
+}/*# sourceMappingURL=RegistryPage.css.map */
